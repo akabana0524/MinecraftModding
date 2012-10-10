@@ -4,18 +4,18 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.NetworkManager;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
-import samples.tileentitysamplemod.TileEntitySampleMod;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -49,19 +49,27 @@ public class WandaBasePacketHandler implements IPacketHandler {
 					y = data.readInt();
 					z = data.readInt();
 					int version = data.readInt();
-					int stackNum = data.readInt();
 					int dataLength = data.readInt();
 					byte[] auxillaryInfo = new byte[dataLength];
 					data.readFully(auxillaryInfo);
 
-					World world = TileEntitySampleMod.proxy.getClientWorld();
+					List<byte[]> tileEntityDataList = new ArrayList<byte[]>();
+					int tileEntityDataNum = data.readInt();
+					for (int i = 0; i < tileEntityDataNum; i++) {
+						int binaryLength = data.readInt();
+						byte[] temp = new byte[binaryLength];
+						data.readFully(temp);
+						tileEntityDataList.add(temp);
+					}
+					World world = Minecraft.getMinecraft().theWorld;
 					TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 
 					if (tileEntity instanceof WandaTileEntityBase) {
-						WandaTileEntityBase tileEntityshelf = (WandaTileEntityBase) tileEntity;
-						tileEntityshelf
+						WandaTileEntityBase wandaTileEntityBase = (WandaTileEntityBase) tileEntity;
+						wandaTileEntityBase
 								.setAuxillaryInfoPacketData(new DataInputStream(
 										new ByteArrayInputStream(auxillaryInfo)));
+						wandaTileEntityBase.setTileEntityData(tileEntityDataList);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

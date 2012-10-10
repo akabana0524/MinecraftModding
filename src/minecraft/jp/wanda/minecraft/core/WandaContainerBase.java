@@ -23,7 +23,7 @@ public abstract class WandaContainerBase extends Container {
 	protected int x;
 	protected int y;
 	protected int z;
-	protected List<WandaInventoryBlock> extraInventoryList;
+	protected List<WandaInventoryGroup> extraInventoryList;
 
 	public WandaContainerBase(EntityPlayer player, World world, int x, int y,
 			int z) {
@@ -45,20 +45,32 @@ public abstract class WandaContainerBase extends Container {
 			addSlotToContainer(new Slot(playerInventory, slotIndex,
 					8 + slotIndex * 18, 142));
 		}
-		extraInventoryList = new ArrayList<WandaInventoryBlock>();
+		extraInventoryList = new ArrayList<WandaInventoryGroup>();
+		setupExtraInventory();
 		if (hasTileEntity()) {
 			TileEntity entity = world.getBlockTileEntity(x, y, z);
 			if (entity != null) {
 				if (entity instanceof WandaTileEntityBase) {
 					WandaTileEntityBase wandaTileEntity = (WandaTileEntityBase) entity;
-					for (int i = 0; i < wandaTileEntity
-							.getInventoryBlockCount(); i++) {
-						addExtraInventory(wandaTileEntity.getInventoryBlock(i));
+					int inventoryIndex = 36;
+					for (int i = 0; i < wandaTileEntity.getDataCount(); i++) {
+						WandaTileEntityData data = wandaTileEntity.getData(i);
+						if (data instanceof WandaInventoryGroup) {
+							WandaInventoryGroup inventoryGroup = (WandaInventoryGroup) data;
+							for (int j = 0; j < inventoryGroup
+									.getSizeInventory(); j++) {
+								inventoryItemStacks.set(inventoryIndex,
+										inventoryGroup.getStackInSlot(j));
+								inventoryIndex++;
+							}
+						}
 					}
 				}
 			}
 		}
 	}
+
+	abstract protected void setupExtraInventory();
 
 	abstract protected boolean hasTileEntity();
 
@@ -81,18 +93,20 @@ public abstract class WandaContainerBase extends Container {
 		super.onCraftGuiClosed(par1EntityPlayer);
 		if (!this.world.isRemote) {
 			List<ItemStack> dropItemList = new ArrayList<ItemStack>();
-			for (IInventory inventory : extraInventoryList) {
-				for (int i = 0; i < inventory.getSizeInventory(); i++) {
-					ItemStack item = inventory.getStackInSlotOnClosing(i);
-					if (item != null) {
-						par1EntityPlayer.dropPlayerItem(item);
+			for (WandaInventoryGroup inventory : extraInventoryList) {
+				if (inventory.isClosingDrop()) {
+					for (int i = 0; i < inventory.getSizeInventory(); i++) {
+						ItemStack item = inventory.getStackInSlotOnClosing(i);
+						if (item != null) {
+							par1EntityPlayer.dropPlayerItem(item);
+						}
 					}
 				}
 			}
 		}
 	}
 
-	protected void addExtraInventory(WandaInventoryBlock extraInventory) {
+	protected void addExtraInventory(WandaInventoryGroup extraInventory) {
 		int displayX = extraInventory.getDisplayX();
 		int displayY = extraInventory.getDisplayY();
 		for (int rows = 0; rows < extraInventory.getRow(); rows++) {

@@ -7,37 +7,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import samples.containersamplemod.InventoryNoop;
-
-import net.minecraft.src.InventoryBasic;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.Packet;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.TileEntity;
-import cpw.mods.fml.common.FMLLog;
 
 abstract public class WandaTileEntityBase extends TileEntity {
 
-	protected List<WandaInventoryBlock> inventoryBlockList;
 	protected int tileEntityVersion;
-	protected int inventoryNum;
+	protected List<WandaTileEntityData> tileEntityDataList;
 
 	public WandaTileEntityBase() {
-		inventoryBlockList = new ArrayList<WandaInventoryBlock>();
+		tileEntityDataList = new ArrayList<WandaTileEntityData>();
 	}
 
-	protected void addInventory(WandaInventoryBlock inventory) {
-		inventoryBlockList.add(inventory);
-		inventoryNum += inventory.getSizeInventory();
+	protected void registTileEntityData(WandaTileEntityData data) {
+		tileEntityDataList.add(data);
 	}
 
-	protected int getInventoryBlockCount() {
-		return inventoryBlockList.size();
+	protected int getDataCount() {
+		return tileEntityDataList.size();
 	}
 
-	protected WandaInventoryBlock getInventoryBlock(int index) {
-		return inventoryBlockList.get(index);
+	protected WandaTileEntityData getData(int index) {
+		return tileEntityDataList.get(index);
 	}
 
 	@Override
@@ -81,24 +75,16 @@ abstract public class WandaTileEntityBase extends TileEntity {
 			dos.writeInt(y);
 			dos.writeInt(z);
 			dos.writeInt(version);
-			int extraInventroryNum = entity.inventoryBlockList.size();
-			dos.writeInt(entity.inventoryNum);
-			for (int i = 0; i < extraInventroryNum; i++) {
-				WandaInventoryBlock inventoryBlock = entity.inventoryBlockList
-						.get(i);
-				for (int j = 0; j < inventoryBlock.getSizeInventory(); j++) {
-					ItemStack stack = inventoryBlock.getStackInSlot(j);
-					if (stack == null) {
-						dos.writeInt(0);
-					} else {
-						dos.writeInt(stack.itemID);
-						dos.writeInt(stack.getItemDamage());
-						dos.writeInt(stack.stackSize);
-					}
-				}
-			}
 			dos.writeInt(data.length);
 			dos.write(data);
+			int tileEntityDataNum = entity.tileEntityDataList.size();
+			dos.writeInt(tileEntityDataNum);
+			for (int i = 0; i < tileEntityDataNum; i++) {
+				WandaTileEntityData temp = entity.tileEntityDataList.get(i);
+				byte[] binary = temp.getBinary();
+				dos.writeInt(binary.length);
+				dos.write(binary);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -113,5 +99,15 @@ abstract public class WandaTileEntityBase extends TileEntity {
 	}
 
 	public void initialize(WandaContainerBase generatorContainer) {
+	}
+
+	public void setTileEntityData(List<byte[]> tileEntityDataList) {
+		if (this.tileEntityDataList.size() == tileEntityDataList.size()) {
+			for (int i = 0; i < this.tileEntityDataList.size(); i++) {
+				this.tileEntityDataList.get(i).readBinary(
+						tileEntityDataList.get(i));
+			}
+		}
+
 	}
 }

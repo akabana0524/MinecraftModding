@@ -2,8 +2,6 @@ package jp.wanda.minecraft.steam;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import jp.wanda.minecraft.core.BlockSide;
@@ -11,35 +9,16 @@ import jp.wanda.minecraft.core.WandaBlockContainerBase;
 import jp.wanda.minecraft.core.WandaContainerBase;
 import jp.wanda.minecraft.core.WandaFacingTileEntity;
 import jp.wanda.minecraft.core.WandaGuiContainerBase;
-import jp.wanda.minecraft.core.WandaInventoryBlock;
+import jp.wanda.minecraft.core.WandaInventoryGroup;
 import jp.wanda.minecraft.core.WandaTileEntityBase;
-
-import org.lwjgl.opengl.GL11;
-
-import samples.containersamplemod.CommonProxy;
-import samples.tileentitysamplemod.TileEntityNoop;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.network.IGuiHandler;
-import net.minecraft.src.Block;
-import net.minecraft.src.BlockContainer;
-import net.minecraft.src.Container;
 import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.Gui;
-import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.ICrafting;
-import net.minecraft.src.IInventory;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
-import net.minecraft.src.MathHelper;
 import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.Packet;
-import net.minecraft.src.Slot;
-import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.network.IGuiHandler;
 
 public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 	public static final String GUI_TEXTURE = "/jp/wanda/minecraft/steam/GuiWandaSteamFuelGenerator.png";
@@ -79,9 +58,16 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 		public GeneratorContainer(EntityPlayer player, World world, int x,
 				int y, int z) {
 			super(player, world, x, y, z);
-			addExtraInventory(new WandaInventoryBlock("Fuel", 1, 1, 26, 35));
-			addExtraInventory(new WandaInventoryBlock("Material", 2, 2, 71, 26));
-			addExtraInventory(new WandaInventoryBlock("Output", 1, 1, 134, 35));
+		}
+
+		@Override
+		protected void setupExtraInventory() {
+			addExtraInventory(new WandaInventoryGroup("Fuel", 1, 1, 26, 35,
+					false));
+			addExtraInventory(new WandaInventoryGroup("Material", 2, 2, 71, 26,
+					false));
+			addExtraInventory(new WandaInventoryGroup("Output", 1, 1, 134, 35,
+					false));
 		}
 
 		@Override
