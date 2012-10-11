@@ -66,4 +66,82 @@ public class WandaFacing6Face extends WandaFacingData {
 		return BlockSide.convert6Side(dir, face);
 	}
 
+	public int getSideBlockId(BlockSide back, World worldObj, int xCoord,
+			int yCoord, int zCoord) {
+		int blockID = -1;
+		BlockSide face = BlockSide.values()[getFace()];
+		switch (back) {
+		case TOP:
+			blockID = worldObj.getBlockId(xCoord, yCoord + 1, zCoord);
+			break;
+		case BOTTOM:
+			blockID = worldObj.getBlockId(xCoord, yCoord - 1, zCoord);
+			break;
+		case FRONT:
+			switch (face) {
+			case FRONT:
+				blockID = worldObj.getBlockId(xCoord, yCoord, zCoord - 1);
+				break;
+			case BACK:
+				blockID = worldObj.getBlockId(xCoord, yCoord, zCoord + 1);
+				break;
+			case LEFT:
+				blockID = worldObj.getBlockId(xCoord - 1, yCoord, zCoord);
+				break;
+			case RIGHT:
+				blockID = worldObj.getBlockId(xCoord + 1, yCoord, zCoord);
+				break;
+			}
+			break;
+		case BACK:
+			switch (face) {
+			case FRONT:
+				blockID = worldObj.getBlockId(xCoord, yCoord, zCoord + 1);
+				break;
+			case BACK:
+				blockID = worldObj.getBlockId(xCoord, yCoord, zCoord - 1);
+				break;
+			case LEFT:
+				blockID = worldObj.getBlockId(xCoord + 1, yCoord, zCoord);
+				break;
+			case RIGHT:
+				blockID = worldObj.getBlockId(xCoord - 1, yCoord, zCoord);
+				break;
+			}
+			break;
+		case LEFT:
+			switch (face) {
+			case FRONT:
+				blockID = worldObj.getBlockId(xCoord - 1, yCoord, zCoord);
+				break;
+			case BACK:
+				blockID = worldObj.getBlockId(xCoord + 1, yCoord, zCoord);
+				break;
+			case LEFT:
+				blockID = worldObj.getBlockId(xCoord, yCoord, zCoord + 1);
+				break;
+			case RIGHT:
+				blockID = worldObj.getBlockId(xCoord, yCoord, zCoord - 1);
+				break;
+			}
+			break;
+		case RIGHT:
+			switch (face) {
+			case FRONT:
+				blockID = worldObj.getBlockId(xCoord + 1, yCoord, zCoord);
+				break;
+			case BACK:
+				blockID = worldObj.getBlockId(xCoord - 1, yCoord, zCoord);
+				break;
+			case LEFT:
+				blockID = worldObj.getBlockId(xCoord, yCoord, zCoord - 1);
+				break;
+			case RIGHT:
+				blockID = worldObj.getBlockId(xCoord, yCoord, zCoord + 1);
+				break;
+			}
+			break;
+		}
+		return blockID;
+	}
 }
