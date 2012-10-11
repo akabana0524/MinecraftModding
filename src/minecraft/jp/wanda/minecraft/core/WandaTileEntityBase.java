@@ -38,12 +38,19 @@ abstract public class WandaTileEntityBase extends TileEntity {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		tileEntityVersion = nbt.getInteger("TileEntityVersion");
+		for (WandaTileEntityData data : tileEntityDataList) {
+			data.readBinary(nbt.getByteArray(data.getName()));
+		}
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("TileEntityVersion", getTileEntityVersion());
+		for (WandaTileEntityData data : tileEntityDataList) {
+			nbt.setByteArray(data.getName(), data.getBinary());
+		}
+
 	}
 
 	abstract public int getTileEntityVersion();

@@ -57,12 +57,7 @@ public abstract class WandaContainerBase extends Container {
 						WandaTileEntityData data = wandaTileEntity.getData(i);
 						if (data instanceof WandaInventoryGroup) {
 							WandaInventoryGroup inventoryGroup = (WandaInventoryGroup) data;
-							for (int j = 0; j < inventoryGroup
-									.getSizeInventory(); j++) {
-								inventoryItemStacks.set(inventoryIndex,
-										inventoryGroup.getStackInSlot(j));
-								inventoryIndex++;
-							}
+							addExtraInventory(inventoryGroup);
 						}
 					}
 				}
@@ -70,7 +65,8 @@ public abstract class WandaContainerBase extends Container {
 		}
 	}
 
-	abstract protected void setupExtraInventory();
+	protected void setupExtraInventory() {
+	}
 
 	abstract protected boolean hasTileEntity();
 

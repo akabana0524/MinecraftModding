@@ -132,9 +132,13 @@ public class WandaInventoryGroup implements IInventory, WandaTileEntityData {
 		try {
 			dout.writeInt(stackList.length);
 			for (ItemStack stack : stackList) {
-				dout.writeInt(stack.itemID);
-				dout.writeInt(stack.stackSize);
-				dout.writeInt(stack.getItemDamage());
+				if (stack == null) {
+					dout.writeInt(-1);
+				} else {
+					dout.writeInt(stack.itemID);
+					dout.writeInt(stack.stackSize);
+					dout.writeInt(stack.getItemDamage());
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -161,9 +165,11 @@ public class WandaInventoryGroup implements IInventory, WandaTileEntityData {
 			int length = dis.readInt();
 			for (int i = 0; i < length; i++) {
 				int itemID = dis.readInt();
-				int stackSize = dis.readInt();
-				int itemDamage = dis.readInt();
-				stackList[i] = new ItemStack(itemID, stackSize, itemDamage);
+				if (itemID != -1) {
+					int stackSize = dis.readInt();
+					int itemDamage = dis.readInt();
+					stackList[i] = new ItemStack(itemID, stackSize, itemDamage);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

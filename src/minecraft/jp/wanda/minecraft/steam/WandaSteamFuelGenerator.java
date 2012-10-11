@@ -62,12 +62,6 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 
 		@Override
 		protected void setupExtraInventory() {
-			addExtraInventory(new WandaInventoryGroup("Fuel", 1, 1, 26, 35,
-					false));
-			addExtraInventory(new WandaInventoryGroup("Material", 2, 2, 71, 26,
-					false));
-			addExtraInventory(new WandaInventoryGroup("Output", 1, 1, 134, 35,
-					false));
 		}
 
 		@Override
@@ -107,6 +101,15 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 			implements WandaFacingTileEntity {
 
 		private byte face;
+
+		public GeneratorTileEntity() {
+			registTileEntityData(new WandaInventoryGroup("Fuel", 1, 1, 26, 35,
+					false));
+			registTileEntityData(new WandaInventoryGroup("Material", 2, 2, 71,
+					26, false));
+			registTileEntityData(new WandaInventoryGroup("Output", 1, 1, 134,
+					35, false));
+		}
 
 		@Override
 		public int getTileEntityVersion() {

@@ -16,6 +16,8 @@ import net.minecraft.src.World;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -61,7 +63,7 @@ public class WandaBasePacketHandler implements IPacketHandler {
 						data.readFully(temp);
 						tileEntityDataList.add(temp);
 					}
-					World world = Minecraft.getMinecraft().theWorld;
+					World world = getWorld();
 					TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 
 					if (tileEntity instanceof WandaTileEntityBase) {
@@ -69,7 +71,8 @@ public class WandaBasePacketHandler implements IPacketHandler {
 						wandaTileEntityBase
 								.setAuxillaryInfoPacketData(new DataInputStream(
 										new ByteArrayInputStream(auxillaryInfo)));
-						wandaTileEntityBase.setTileEntityData(tileEntityDataList);
+						wandaTileEntityBase
+								.setTileEntityData(tileEntityDataList);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -79,6 +82,11 @@ public class WandaBasePacketHandler implements IPacketHandler {
 			}
 		}
 
+	}
+
+	@SideOnly(Side.CLIENT)
+	private World getWorld() {
+		return Minecraft.getMinecraft().theWorld;
 	}
 
 }
