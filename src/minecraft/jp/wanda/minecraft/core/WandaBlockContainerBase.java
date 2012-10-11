@@ -1,26 +1,33 @@
 package jp.wanda.minecraft.core;
 
+import java.util.Random;
+
+import jp.wanda.minecraft.core.tileentity.WandaFacingData;
 import jp.wanda.minecraft.steam.WandaSteamFuelGenerator.GeneratorTileEntity;
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockContainer;
+import net.minecraft.src.EntityItem;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.IBlockAccess;
+import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
+import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.TileEntity;
+import net.minecraft.src.TileEntityChest;
 import net.minecraft.src.World;
 
 abstract public class WandaBlockContainerBase extends BlockContainer {
 
-	private Class<? extends TileEntity> tileEntityClass;
-	private boolean facing;
-	private TileEntity tileEntity;
+	private Class<? extends WandaTileEntityBase> tileEntityClass;
+	private WandaTileEntityBase tileEntity;
+	private boolean enableFacing;
+	private Random random = new Random();
 
 	protected WandaBlockContainerBase(int blockID, Material material,
-			Class<? extends TileEntity> tileEntityClass) {
+			Class<? extends WandaTileEntityBase> tileEntityClass) {
 		super(blockID, material);
 		this.tileEntityClass = tileEntityClass;
-		facing = tileEntityClass.asSubclass(WandaFacingTileEntity.class) != null;
 	}
 
 	@Override
@@ -28,6 +35,7 @@ abstract public class WandaBlockContainerBase extends BlockContainer {
 		tileEntity = null;
 		try {
 			tileEntity = tileEntityClass.newInstance();
+			enableFacing = tileEntity.getFacing() != null;
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -39,38 +47,8 @@ abstract public class WandaBlockContainerBase extends BlockContainer {
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
 		super.onBlockAdded(world, x, y, z);
-		if (hasFacing()) {
-			setDefaultDirection(world, x, y, z);
-		}
-	}
-
-	private void setDefaultDirection(World world, int x, int y, int z) {
-		WandaFacingTileEntity tileEntityNoop = (WandaFacingTileEntity) world
-				.getBlockTileEntity(x, y, z);
-		if (!world.isRemote) {
-			int var5 = world.getBlockId(x, y, z - 1);
-			int var6 = world.getBlockId(x, y, z + 1);
-			int var7 = world.getBlockId(x - 1, y, z);
-			int var8 = world.getBlockId(x + 1, y, z);
-			byte var9 = 3;
-
-			if (Block.opaqueCubeLookup[var5] && !Block.opaqueCubeLookup[var6]) {
-				var9 = 3;
-			}
-
-			if (Block.opaqueCubeLookup[var6] && !Block.opaqueCubeLookup[var5]) {
-				var9 = 2;
-			}
-
-			if (Block.opaqueCubeLookup[var7] && !Block.opaqueCubeLookup[var8]) {
-				var9 = 5;
-			}
-
-			if (Block.opaqueCubeLookup[var8] && !Block.opaqueCubeLookup[var7]) {
-				var9 = 4;
-			}
-
-			tileEntityNoop.setFacing(var9);
+		if (enableFacing) {
+			getFacing(world, x, y, z).setDefaultDirection(world, x, y, z);
 		}
 	}
 
@@ -78,32 +56,11 @@ abstract public class WandaBlockContainerBase extends BlockContainer {
 	public void onBlockPlacedBy(World world, int x, int y, int z,
 			EntityLiving entityliving) {
 		super.onBlockPlacedBy(world, x, y, z, entityliving);
-		if (hasFacing()) {
-			int playerFacing = MathHelper
-					.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-
-			byte facing = 0;
-			if (playerFacing == 0) {
-				facing = 2;
-			}
-			if (playerFacing == 1) {
-				facing = 5;
-			}
-			if (playerFacing == 2) {
-				facing = 3;
-			}
-			if (playerFacing == 3) {
-				facing = 4;
-			}
-			WandaFacingTileEntity facingTileEntity = (WandaFacingTileEntity) world
-					.getBlockTileEntity(x, y, z);
-			((WandaFacingTileEntity) facingTileEntity).setFacing(facing);
-			world.markBlockNeedsUpdate(x, y, z);
+		if (enableFacing) {
+			getFacing(world, x, y, z).onBlockPlacedBy(world, x, y, z,
+					entityliving);
 		}
-	}
-
-	protected boolean hasFacing() {
-		return facing;
+		world.markBlockNeedsUpdate(x, y, z);
 	}
 
 	@Override
@@ -111,11 +68,8 @@ abstract public class WandaBlockContainerBase extends BlockContainer {
 			int z, int sideIndex) {
 		BlockSide dir = BlockSide.values()[sideIndex];
 		BlockSide side = dir;
-		if (hasFacing()) {
-			WandaFacingTileEntity facing = (WandaFacingTileEntity) par1iBlockAccess
-					.getBlockTileEntity(x, y, z);
-			BlockSide face = BlockSide.values()[facing.getFacing()];
-			side = BlockSide.convert6Side(dir, face);
+		if (enableFacing) {
+			side = getFacing(par1iBlockAccess, x, y, z).getSide(dir);
 		}
 		return getTexture(side, x);
 	}
@@ -126,5 +80,69 @@ abstract public class WandaBlockContainerBase extends BlockContainer {
 	}
 
 	abstract public int getTexture(BlockSide side, int metaData);
+
+	protected WandaFacingData getFacing(IBlockAccess world, int x, int y, int z) {
+		WandaTileEntityBase tileEntity = (WandaTileEntityBase) world
+				.getBlockTileEntity(x, y, z);
+		return tileEntity.getFacing();
+	}
+
+	@Override
+	public void onBlockEventReceived(World par1World, int par2, int par3,
+			int par4, int par5, int par6) {
+		super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
+	}
+
+	@Override
+	public void breakBlock(World world, int x, int y, int z, int blockID,
+			int blockMetaData) {
+		onBlockDestroyed(world, x, y, z);
+		super.breakBlock(world, x, y, z, blockID, blockMetaData);
+	}
+
+	protected void onBlockDestroyed(World world, int x, int y, int z) {
+		WandaTileEntityBase tileEntity = (WandaTileEntityBase) world
+				.getBlockTileEntity(x, y, z);
+		for (WandaTileEntityData data : tileEntity.tileEntityDataList) {
+			if (data instanceof WandaInventoryGroup) {
+				WandaInventoryGroup var7 = (WandaInventoryGroup) data;
+				for (int var8 = 0; var8 < var7.getSizeInventory(); ++var8) {
+					ItemStack var9 = var7.getStackInSlot(var8);
+					if (var9 != null) {
+						float var10 = this.random.nextFloat() * 0.8F + 0.1F;
+						float var11 = this.random.nextFloat() * 0.8F + 0.1F;
+						EntityItem var14;
+						for (float var12 = this.random.nextFloat() * 0.8F + 0.1F; var9.stackSize > 0; world
+								.spawnEntityInWorld(var14)) {
+							int var13 = this.random.nextInt(21) + 10;
+							if (var13 > var9.stackSize) {
+								var13 = var9.stackSize;
+							}
+							var9.stackSize -= var13;
+							var14 = new EntityItem(world,
+									(double) ((float) x + var10),
+									(double) ((float) y + var11),
+									(double) ((float) z + var12),
+									new ItemStack(var9.itemID, var13,
+											var9.getItemDamage()));
+							float var15 = 0.05F;
+							var14.motionX = (double) ((float) this.random
+									.nextGaussian() * var15);
+							var14.motionY = (double) ((float) this.random
+									.nextGaussian() * var15 + 0.2F);
+							var14.motionZ = (double) ((float) this.random
+									.nextGaussian() * var15);
+
+							if (var9.hasTagCompound()) {
+								var14.item.setTagCompound((NBTTagCompound) var9
+										.getTagCompound().copy());
+							}
+						}
+					}
+				}
+
+			}
+		}
+	}
 
 }

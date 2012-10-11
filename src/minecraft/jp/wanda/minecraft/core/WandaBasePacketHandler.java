@@ -51,9 +51,6 @@ public class WandaBasePacketHandler implements IPacketHandler {
 					y = data.readInt();
 					z = data.readInt();
 					int version = data.readInt();
-					int dataLength = data.readInt();
-					byte[] auxillaryInfo = new byte[dataLength];
-					data.readFully(auxillaryInfo);
 
 					List<byte[]> tileEntityDataList = new ArrayList<byte[]>();
 					int tileEntityDataNum = data.readInt();
@@ -68,9 +65,6 @@ public class WandaBasePacketHandler implements IPacketHandler {
 
 					if (tileEntity instanceof WandaTileEntityBase) {
 						WandaTileEntityBase wandaTileEntityBase = (WandaTileEntityBase) tileEntity;
-						wandaTileEntityBase
-								.setAuxillaryInfoPacketData(new DataInputStream(
-										new ByteArrayInputStream(auxillaryInfo)));
 						wandaTileEntityBase
 								.setTileEntityData(tileEntityDataList);
 					}

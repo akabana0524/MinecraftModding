@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wanda.minecraft.core.tileentity.WandaFacingData;
+
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.Packet;
@@ -17,6 +19,7 @@ abstract public class WandaTileEntityBase extends TileEntity {
 
 	protected int tileEntityVersion;
 	protected List<WandaTileEntityData> tileEntityDataList;
+	protected WandaFacingData facing;
 
 	public WandaTileEntityBase() {
 		tileEntityDataList = new ArrayList<WandaTileEntityData>();
@@ -24,6 +27,9 @@ abstract public class WandaTileEntityBase extends TileEntity {
 
 	protected void registTileEntityData(WandaTileEntityData data) {
 		tileEntityDataList.add(data);
+		if (data instanceof WandaFacingData) {
+			facing = (WandaFacingData) data;
+		}
 	}
 
 	protected int getDataCount() {
@@ -55,11 +61,6 @@ abstract public class WandaTileEntityBase extends TileEntity {
 
 	abstract public int getTileEntityVersion();
 
-	abstract public byte[] getAuxillaryInfoPacketData();
-
-	abstract public void setAuxillaryInfoPacketData(DataInputStream din)
-			throws IOException;
-
 	abstract public String getChannel();
 
 	@Override
@@ -75,15 +76,12 @@ abstract public class WandaTileEntityBase extends TileEntity {
 		int y = entity.yCoord;
 		int z = entity.zCoord;
 		int version = entity.getTileEntityVersion();
-		byte[] data = entity.getAuxillaryInfoPacketData();
 
 		try {
 			dos.writeInt(x);
 			dos.writeInt(y);
 			dos.writeInt(z);
 			dos.writeInt(version);
-			dos.writeInt(data.length);
-			dos.write(data);
 			int tileEntityDataNum = entity.tileEntityDataList.size();
 			dos.writeInt(tileEntityDataNum);
 			for (int i = 0; i < tileEntityDataNum; i++) {
@@ -116,5 +114,13 @@ abstract public class WandaTileEntityBase extends TileEntity {
 			}
 		}
 
+	}
+
+	public boolean hasFacing() {
+		return facing != null;
+	}
+
+	public WandaFacingData getFacing() {
+		return facing;
 	}
 }

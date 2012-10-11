@@ -1,21 +1,19 @@
 package jp.wanda.minecraft.steam;
 
-import java.io.DataInputStream;
-import java.io.IOException;
 import java.util.Random;
 
 import jp.wanda.minecraft.core.BlockSide;
 import jp.wanda.minecraft.core.WandaBlockContainerBase;
 import jp.wanda.minecraft.core.WandaContainerBase;
-import jp.wanda.minecraft.core.WandaFacingTileEntity;
 import jp.wanda.minecraft.core.WandaGuiContainerBase;
 import jp.wanda.minecraft.core.WandaInventoryGroup;
 import jp.wanda.minecraft.core.WandaTileEntityBase;
+import jp.wanda.minecraft.core.tileentity.WandaFacing6Face;
+import jp.wanda.minecraft.core.tileentity.WandaFacingData;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ICrafting;
 import net.minecraft.src.Material;
-import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -97,18 +95,19 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 
 	}
 
-	public static class GeneratorTileEntity extends WandaTileEntityBase
-			implements WandaFacingTileEntity {
+	public static class GeneratorTileEntity extends WandaTileEntityBase {
 
-		private byte face;
+		private WandaFacingData face;
 
 		public GeneratorTileEntity() {
+			face = new WandaFacing6Face();
 			registTileEntityData(new WandaInventoryGroup("Fuel", 1, 1, 26, 35,
 					false));
 			registTileEntityData(new WandaInventoryGroup("Material", 2, 2, 71,
 					26, false));
 			registTileEntityData(new WandaInventoryGroup("Output", 1, 1, 134,
 					35, false));
+			registTileEntityData(face);
 		}
 
 		@Override
@@ -119,37 +118,6 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 		@Override
 		public void updateEntity() {
 			super.updateEntity();
-		}
-
-		public void setFacing(byte face) {
-			this.face = face;
-		}
-
-		public int getFacing() {
-			return face;
-		}
-
-		@Override
-		public void writeToNBT(NBTTagCompound nbt) {
-			super.writeToNBT(nbt);
-			nbt.setByte("Face", face);
-		}
-
-		@Override
-		public void readFromNBT(NBTTagCompound nbt) {
-			super.readFromNBT(nbt);
-			face = nbt.getByte("Face");
-		}
-
-		@Override
-		public byte[] getAuxillaryInfoPacketData() {
-			return new byte[] { face };
-		}
-
-		@Override
-		public void setAuxillaryInfoPacketData(DataInputStream din)
-				throws IOException {
-			face = din.readByte();
 		}
 
 		@Override
