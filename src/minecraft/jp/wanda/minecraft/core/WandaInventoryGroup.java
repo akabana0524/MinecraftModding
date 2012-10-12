@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
+import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 
 public class WandaInventoryGroup implements IInventory, WandaTileEntityData {
@@ -21,9 +22,11 @@ public class WandaInventoryGroup implements IInventory, WandaTileEntityData {
 	private int displayX;
 	private int displayY;
 	private boolean closingDrop;
+	private boolean enablePlayerSet;
 
 	public WandaInventoryGroup(String invName, int column, int row,
-			int displayX, int displayY, boolean closingDrop) {
+			int displayX, int displayY, boolean closingDrop,
+			boolean enablePlayerSet) {
 		this.stackList = new ItemStack[column * row];
 		this.invName = invName;
 		this.row = row;
@@ -31,6 +34,7 @@ public class WandaInventoryGroup implements IInventory, WandaTileEntityData {
 		this.displayX = displayX;
 		this.displayY = displayY;
 		this.closingDrop = closingDrop;
+		this.enablePlayerSet = enablePlayerSet;
 	}
 
 	@Override
@@ -117,6 +121,10 @@ public class WandaInventoryGroup implements IInventory, WandaTileEntityData {
 		return closingDrop;
 	}
 
+	public boolean isEnablePlayerSet() {
+		return enablePlayerSet;
+	}
+
 	@Override
 	public String getName() {
 		return getInvName();
@@ -182,5 +190,66 @@ public class WandaInventoryGroup implements IInventory, WandaTileEntityData {
 				}
 			}
 		}
+	}
+
+	public boolean containsItem(Item item) {
+		return containsItem(item, 1, 0);
+	}
+
+	public boolean containsItem(Item item, int count, int damage) {
+		for (ItemStack stack : stackList) {
+			if (stack == null) {
+				continue;
+			}
+			if (item.shiftedIndex == stack.itemID && stack.stackSize >= count
+					&& stack.getItemDamage() == damage) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean removeItem(ItemStack itemStack) {
+		for (int i = 0; i < stackList.length; i++) {
+			ItemStack stack = stackList[i];
+			if (stack != null) {
+				if (itemStack.itemID == stack.itemID
+						&& stack.stackSize >= itemStack.stackSize
+						&& stack.getItemDamage() == itemStack.getItemDamage()) {
+					stack.stackSize -= itemStack.stackSize;
+					if (stack.stackSize == 0) {
+						stackList[i] = null;
+					}
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean addItem(ItemStack itemStack) {
+		int nullIndex = -1;
+		for (int i = 0; i < stackList.length; i++) {
+			ItemStack stack = stackList[i];
+			if (stack == null) {
+				nullIndex = i;
+				continue;
+			}
+			if (itemStack.itemID == stack.itemID
+					&& stack.getItemDamage() == itemStack.getItemDamage()) {
+				stack.stackSize += itemStack.stackSize;
+				if (stack.stackSize > stack.getMaxStackSize()) {
+					itemStack.stackSize -= stack.stackSize
+							- stack.getMaxStackSize();
+					stack.stackSize = stack.getMaxStackSize();
+				}
+				return true;
+			}
+		}
+		if (nullIndex != -1) {
+			stackList[nullIndex] = itemStack;
+			return true;
+		}
+		return false;
 	}
 }

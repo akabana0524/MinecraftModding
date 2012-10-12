@@ -8,15 +8,21 @@ import jp.wanda.minecraft.core.WandaContainerBase;
 import jp.wanda.minecraft.core.WandaGuiContainerBase;
 import jp.wanda.minecraft.core.WandaInventoryGroup;
 import jp.wanda.minecraft.core.WandaTileEntityBase;
+import jp.wanda.minecraft.core.tileentity.WandaEnergyAndProgress;
 import jp.wanda.minecraft.core.tileentity.WandaFacing6Face;
 import jp.wanda.minecraft.core.tileentity.WandaFacingData;
+import jp.wanda.minecraft.steam.WandaSteamFuelGenerator.GeneratorTileEntity;
+import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ICrafting;
+import net.minecraft.src.Item;
+import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 	public static final String GUI_TEXTURE = "/jp/wanda/minecraft/steam/GuiWandaSteamFuelGenerator.png";
@@ -45,10 +51,28 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 	}
 
 	private static class GeneratorGUI extends WandaGuiContainerBase {
+		private GeneratorTileEntity generatorTileEntity;
 
 		public GeneratorGUI(WandaContainerBase container, EntityPlayer player,
 				World world, int x, int y, int z) {
 			super(container, player, world, x, y, z, GUI_TEXTURE);
+			generatorTileEntity = (GeneratorTileEntity) world
+					.getBlockTileEntity(x, y, z);
+		}
+
+		@Override
+		protected void drawGuiContainerForegroundLayer() {
+			fontRenderer.drawString(
+					"Energy:" + generatorTileEntity.ep.getEnergy(), 8, 6,
+					0x404040);
+			fontRenderer.drawString(
+					"ProcCnt:" + generatorTileEntity.ep.getProcCount(), 8, 20,
+					0x404040);
+		}
+
+		@Override
+		public void drawScreen(int par1, int par2, float par3) {
+			super.drawScreen(par1, par2, par3);
 		}
 	}
 
@@ -59,55 +83,36 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 		}
 
 		@Override
-		protected void setupExtraInventory() {
-		}
-
-		@Override
-		public void updateCraftingResults() {
-			super.updateCraftingResults();
-		}
-
-		@Override
-		public void updateProgressBar(int par1, int par2) {
-			super.updateProgressBar(par1, par2);
-			FMLLog.info("updateProgressBar(" + par1 + "," + par2 + ")");
-		}
-
-		@Override
 		protected boolean hasTileEntity() {
 			return true;
-		}
-
-		@Override
-		protected int getInventoryBlockX(int index) {
-			return 0;
-		}
-
-		@Override
-		protected int getInventoryBlockY(int index) {
-			return 0;
-		}
-
-		@Override
-		public void addCraftingToCrafters(ICrafting par1iCrafting) {
-			super.addCraftingToCrafters(par1iCrafting);
 		}
 
 	}
 
 	public static class GeneratorTileEntity extends WandaTileEntityBase {
 
-		private WandaFacingData face;
+		private WandaFacing6Face face;
+		private WandaEnergyAndProgress ep;
+		private WandaInventoryGroup fuel;
+		private WandaInventoryGroup material;
+		private WandaInventoryGroup output;
+		private BlockSide waterSide;
+		private boolean active;
+
+		private static final BlockSide[] CHECK_SIDE = { BlockSide.BOTTOM,
+				BlockSide.BACK, BlockSide.LEFT, BlockSide.RIGHT,
+				BlockSide.FRONT, BlockSide.TOP, };
+		private static final int NEED_PROC_COUNT = 20 * 10;
 
 		public GeneratorTileEntity() {
-			face = new WandaFacing6Face();
-			registTileEntityData(new WandaInventoryGroup("Fuel", 1, 1, 26, 35,
-					false));
-			registTileEntityData(new WandaInventoryGroup("Material", 2, 2, 71,
-					26, false));
-			registTileEntityData(new WandaInventoryGroup("Output", 1, 1, 134,
-					35, false));
-			registTileEntityData(face);
+			registTileEntityData(fuel = new WandaInventoryGroup("Fuel", 1, 1,
+					26, 35, false, true));
+			registTileEntityData(material = new WandaInventoryGroup("Material",
+					2, 2, 71, 26, false, true));
+			registTileEntityData(output = new WandaInventoryGroup("Output", 1,
+					1, 134, 35, false, false));
+			registTileEntityData(face = new WandaFacing6Face());
+			registTileEntityData(ep = new WandaEnergyAndProgress());
 		}
 
 		@Override
@@ -118,6 +123,86 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 		@Override
 		public void updateEntity() {
 			super.updateEntity();
+			waterSide = checkWater();
+			if (checkMaterial() && checkOutput()) {
+				processGenerate();
+			}
+			if (ep.getEnergy() == 0) {
+				active = false;
+			} else {
+				active = true;
+				ep.setEnergy(ep.getEnergy() - 1);
+			}
+		}
+
+		private boolean checkOutput() {
+			ItemStack itemStack = output.getStackInSlot(0);
+			if (itemStack == null) {
+				return true;
+			}
+			if (itemStack.itemID != WandaSteamFuel.globalShiftedIndex) {
+				return false;
+			}
+			return itemStack.stackSize < itemStack.getMaxStackSize();
+		}
+
+		private void processGenerate() {
+			if (ep.getEnergy() == 0 && fuel.containsItem(Item.coal)) {
+				ItemStack itemStack = new ItemStack(Item.coal.shiftedIndex, 1,
+						0);
+				fuel.removeItem(itemStack);
+				ep.setEnergy(ep.getEnergy()
+						+ GameRegistry.getFuelValue(itemStack));
+			}
+			if (ep.getEnergy() == 0) {
+				return;
+			}
+			active = true;
+			ep.setProcCount(ep.getProcCount() + 1);
+			if (ep.getProcCount() >= NEED_PROC_COUNT) {
+				ep.setProcCount(ep.getProcCount() - NEED_PROC_COUNT);
+				if (material.removeItem(new ItemStack(
+						Item.bucketWater.shiftedIndex, 1, 0))) {
+					material.addItem(new ItemStack(
+							Item.bucketEmpty.shiftedIndex, 1, 0));
+				}
+				material.removeItem(new ItemStack(Item.gunpowder.shiftedIndex,
+						1, 0));
+				material.removeItem(new ItemStack(Item.coal.shiftedIndex, 1, 0));
+				material.removeItem(new ItemStack(Item.slimeBall.shiftedIndex,
+						1, 0));
+				output.addItem(new ItemStack(WandaSteamFuel.globalShiftedIndex,
+						1, 0));
+
+			}
+		}
+
+		private boolean checkMaterial() {
+			if (waterSide == null) {
+				if (!material.containsItem(Item.bucketWater)) {
+					return false;
+				}
+			}
+			if (!material.containsItem(Item.coal)) {
+				return false;
+			}
+			if (!material.containsItem(Item.gunpowder)) {
+				return false;
+			}
+			if (!material.containsItem(Item.slimeBall)) {
+				return false;
+			}
+			return true;
+		}
+
+		private BlockSide checkWater() {
+			for (BlockSide check : CHECK_SIDE) {
+				if (Block.waterStill.blockID == face.getSideBlockId(check,
+						worldObj, xCoord, yCoord, zCoord)) {
+					return check;
+				}
+			}
+			return null;
 		}
 
 		@Override
@@ -129,6 +214,8 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 
 	private mod_WandaSteamCore core;
 	private int guiid;
+
+	private boolean isActive;
 
 	public WandaSteamFuelGenerator(int par1, Material par3Material,
 			mod_WandaSteamCore core, int guiid) {
@@ -164,4 +251,50 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 		return 16 + side.ordinal();
 	}
 
+	@Override
+	public void randomDisplayTick(World par1World, int par2, int par3,
+			int par4, Random par5Random) {
+		super.randomDisplayTick(par1World, par2, par3, par4, par5Random);
+		GeneratorTileEntity tileEntity = ((GeneratorTileEntity) par1World
+				.getBlockTileEntity(par2, par3, par4));
+		if (tileEntity.active) {
+			int var6 = tileEntity.face.getFace();
+			float var7 = (float) par2 + 0.5F;
+			float var8 = (float) par3 + 0.0F + par5Random.nextFloat() * 6.0F
+					/ 16.0F;
+			float var9 = (float) par4 + 0.5F;
+			float var10 = 0.52F;
+			float var11 = par5Random.nextFloat() * 0.6F - 0.3F;
+
+			if (var6 == 4) {
+				par1World.spawnParticle("smoke", (double) (var7 - var10),
+						(double) var8, (double) (var9 + var11), 0.0D, 0.0D,
+						0.0D);
+				par1World.spawnParticle("flame", (double) (var7 - var10),
+						(double) var8, (double) (var9 + var11), 0.0D, 0.0D,
+						0.0D);
+			} else if (var6 == 5) {
+				par1World.spawnParticle("smoke", (double) (var7 + var10),
+						(double) var8, (double) (var9 + var11), 0.0D, 0.0D,
+						0.0D);
+				par1World.spawnParticle("flame", (double) (var7 + var10),
+						(double) var8, (double) (var9 + var11), 0.0D, 0.0D,
+						0.0D);
+			} else if (var6 == 2) {
+				par1World.spawnParticle("smoke", (double) (var7 + var11),
+						(double) var8, (double) (var9 - var10), 0.0D, 0.0D,
+						0.0D);
+				par1World.spawnParticle("flame", (double) (var7 + var11),
+						(double) var8, (double) (var9 - var10), 0.0D, 0.0D,
+						0.0D);
+			} else if (var6 == 3) {
+				par1World.spawnParticle("smoke", (double) (var7 + var11),
+						(double) var8, (double) (var9 + var10), 0.0D, 0.0D,
+						0.0D);
+				par1World.spawnParticle("flame", (double) (var7 + var11),
+						(double) var8, (double) (var9 + var10), 0.0D, 0.0D,
+						0.0D);
+			}
+		}
+	}
 }

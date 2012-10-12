@@ -70,10 +70,6 @@ public abstract class WandaContainerBase extends Container {
 
 	abstract protected boolean hasTileEntity();
 
-	abstract protected int getInventoryBlockX(int index);
-
-	abstract protected int getInventoryBlockY(int index);
-
 	@Override
 	public ItemStack transferStackInSlot(int par1) {
 		return null;
@@ -102,14 +98,19 @@ public abstract class WandaContainerBase extends Container {
 		}
 	}
 
-	protected void addExtraInventory(WandaInventoryGroup extraInventory) {
+	protected void addExtraInventory(final WandaInventoryGroup extraInventory) {
 		int displayX = extraInventory.getDisplayX();
 		int displayY = extraInventory.getDisplayY();
 		for (int rows = 0; rows < extraInventory.getRow(); rows++) {
 			for (int columns = 0; columns < extraInventory.getColumn(); columns++) {
 				addSlotToContainer(new Slot(extraInventory, columns + rows
 						* extraInventory.getColumn(), displayX + columns
-						* SLOT_SIZE, displayY + rows * SLOT_SIZE));
+						* SLOT_SIZE, displayY + rows * SLOT_SIZE) {
+					@Override
+					public boolean isItemValid(ItemStack par1ItemStack) {
+						return extraInventory.isEnablePlayerSet();
+					}
+				});
 			}
 		}
 		extraInventoryList.add(extraInventory);

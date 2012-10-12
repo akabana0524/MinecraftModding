@@ -50,7 +50,7 @@ public class mod_WandaSteamCore extends WandaModBase {
 		WandaBasePacketHandler.registerTileEntityPacketChannel("WandaSteamFG",
 				PacketType.TILE_ENTITY);
 
-		WandaSteamFuel temp = new WandaSteamFuel(fuelGeneratorID);
+		WandaSteamFuel temp = new WandaSteamFuel(fuelID);
 		temp.setItemName("Steam Fuel");
 		GameRegistry.registerFuelHandler(temp);
 		LanguageRegistry.addName(temp, "Steam Fuel");

@@ -7,8 +7,10 @@ import net.minecraft.src.ItemStack;
 
 public class WandaSteamFuel extends Item implements IFuelHandler {
 
+	public static int globalShiftedIndex;
 	protected WandaSteamFuel(int par1) {
 		super(par1);
+		WandaSteamFuel.globalShiftedIndex = this.shiftedIndex;
 		setIconIndex(0);
 	}
 
