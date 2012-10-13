@@ -222,7 +222,7 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 		super(par1, par3Material, GeneratorTileEntity.class);
 		this.core = core;
 		this.guiid = guiid;
-		setCreativeTab(CreativeTabs.tabBrewing);
+		setCreativeTab(CreativeTabs.tabMisc);
 		setTextureFile(mod_WandaSteamCore.TEXTURE);
 		setHardness(3.5F);
 		setStepSound(soundMetalFootstep);

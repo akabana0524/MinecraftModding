@@ -43,6 +43,8 @@ public class mod_WandaSteamCore extends WandaModBase {
 		}
 		int fuelID = config.getOrCreateIntProperty("Steam Fuel", "item", 6000)
 				.getInt();
+		int smallEngineID = config.getOrCreateIntProperty("Steam Engne small",
+				"item", 6001).getInt();
 		int fuelGeneratorID = config.getOrCreateIntProperty(
 				"Steam Fuel Generator", "block", 160).getInt();
 		config.save();
@@ -50,11 +52,11 @@ public class mod_WandaSteamCore extends WandaModBase {
 		WandaBasePacketHandler.registerTileEntityPacketChannel("WandaSteamFG",
 				PacketType.TILE_ENTITY);
 
-		WandaSteamFuel temp = new WandaSteamFuel(fuelID);
-		temp.setItemName("Steam Fuel");
-		GameRegistry.registerFuelHandler(temp);
-		LanguageRegistry.addName(temp, "Steam Fuel");
-		GameRegistry.addShapelessRecipe(new ItemStack(temp), new Object[] {
+		WandaSteamFuel fuel = new WandaSteamFuel(fuelID);
+		fuel.setItemName("Steam Fuel");
+		GameRegistry.registerFuelHandler(fuel);
+		LanguageRegistry.addName(fuel, "Steam Fuel");
+		GameRegistry.addShapelessRecipe(new ItemStack(fuel), new Object[] {
 				new ItemStack(Item.gunpowder, 1), new ItemStack(Item.coal, 1),
 				new ItemStack(Item.bucketWater, 1),
 				new ItemStack(Item.bucketWater, 1), });
@@ -72,6 +74,14 @@ public class mod_WandaSteamCore extends WandaModBase {
 		GameRegistry.registerTileEntity(
 				WandaSteamFuelGenerator.GeneratorTileEntity.class,
 				"SteamFuelGenerator");
+
+		WandaSteamSmallEngine smallEngine = new WandaSteamSmallEngine(
+				smallEngineID);
+		smallEngine.setItemName("Steam Engine(small)");
+		LanguageRegistry.addName(smallEngine, "Steam Engine(small)");
+		GameRegistry.addRecipe(new ItemStack(smallEngine), new Object[] {
+				"XXX", "YZW", 'X', Item.ingotIron, 'Y', Item.redstone, 'Z',
+				Block.stoneOvenIdle, 'W', Item.slimeBall });
 
 	}
 }

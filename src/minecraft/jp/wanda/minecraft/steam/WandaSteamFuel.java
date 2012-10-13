@@ -26,6 +26,6 @@ public class WandaSteamFuel extends Item implements IFuelHandler {
 
 	@Override
 	public CreativeTabs getCreativeTab() {
-		return CreativeTabs.tabMaterials;
+		return CreativeTabs.tabMisc;
 	}
 }
