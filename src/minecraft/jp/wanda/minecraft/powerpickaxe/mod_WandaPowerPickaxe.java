@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
-import WandaResource.WandaKeyHandler;
-import WandaResource.WandaKeyHandler.WandaKey;
-import WandaResource.WandaKeyHandler.WandaKeyListener;
+import WandaResource.WandaKeyRegistry;
+import WandaResource.WandaKeyRegistry.WandaKey;
+import WandaResource.WandaKeyRegistry.WandaKeyListener;
 
 import jp.wanda.minecraft.MaterialTable;
 import jp.wanda.minecraft.WandaModBase;
@@ -114,7 +114,7 @@ public class mod_WandaPowerPickaxe extends WandaModBase implements
 		FMLLog.log(Level.INFO, "Init " + getModID());
 		instance = this;
 		if (event.getSide() == Side.CLIENT) {
-			WandaKeyHandler.registerWandaKeyListener(WandaKey.TOGGLE, this);
+			WandaKeyRegistry.instance.registerWandaKeyListener(WandaKey.TOGGLE, this);
 		}
 		Property propertyItemID = config.getOrCreateIntProperty("ItemID",
 				"general", 5030);

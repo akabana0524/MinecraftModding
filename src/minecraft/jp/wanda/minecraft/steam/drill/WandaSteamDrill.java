@@ -17,4 +17,5 @@ public class WandaSteamDrill extends ItemPickaxe {
 	public String getTextureFile() {
 		return mod_WandaSteamCore.TEXTURE;
 	}
+
 }

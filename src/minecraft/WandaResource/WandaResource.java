@@ -20,9 +20,9 @@ public class WandaResource {
 	public void init(FMLInitializationEvent event) {
 		FMLLog.info("Init WandaResource");
 
-		if (event.getSide() == Side.CLIENT) {
-			KeyBindingRegistry.registerKeyBinding(new WandaKeyHandler());
-		}
+		// if (event.getSide() == Side.CLIENT) {
+		// KeyBindingRegistry.registerKeyBinding(new WandaKeyHandler());
+		// }
 	}
 
 }
