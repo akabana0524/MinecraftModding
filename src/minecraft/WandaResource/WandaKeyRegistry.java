@@ -17,8 +17,11 @@ import WandaResource.WandaKeyRegistry.WandaKeyListener;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.asm.SideOnly;
+import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.TickType;
 
+@SideOnly(Side.CLIENT)
 public class WandaKeyRegistry {
 
 	public static interface WandaKeyListener {
@@ -38,6 +41,7 @@ public class WandaKeyRegistry {
 			super(new KeyBinding[] { new KeyBinding(key.getName(),
 					key.getDefaultKeyboard()) },
 					new boolean[] { key.isRepeat() });
+			this.key = key;
 			this.listenerList = listenerList;
 		}
 
@@ -118,19 +122,21 @@ public class WandaKeyRegistry {
 		}
 	}
 
-	public static WandaKeyRegistry instance = new WandaKeyRegistry();
-
-	private Set<WandaKey> registedKey;
-	private Map<WandaKey, List<WandaKeyListener>> listenerMap;
-	private Map<KeyBinding, WandaKey> keyMap;
-
+	private static Set<WandaKey> registedKey;
+	private static  Map<WandaKey, List<WandaKeyListener>> listenerMap;
+	private static Map<KeyBinding, WandaKey> keyMap;
+	private static boolean initialize;
 	public WandaKeyRegistry() {
-		registedKey = new HashSet<WandaKeyRegistry.WandaKey>();
-		listenerMap = new HashMap<WandaKeyRegistry.WandaKey, List<WandaKeyListener>>();
-		keyMap = new HashMap<KeyBinding, WandaKeyRegistry.WandaKey>();
 	}
 
-	public void registerWandaKeyListener(WandaKey key, WandaKeyListener listener) {
+	@SideOnly(Side.CLIENT)
+	public static void registerWandaKeyListener(WandaKey key, WandaKeyListener listener) {
+		if(!initialize) {
+			registedKey = new HashSet<WandaKeyRegistry.WandaKey>();
+			listenerMap = new HashMap<WandaKeyRegistry.WandaKey, List<WandaKeyListener>>();
+			keyMap = new HashMap<KeyBinding, WandaKeyRegistry.WandaKey>();
+			initialize = true;
+		}
 		KeyBinding keyBinding = new KeyBinding(key.getName(),
 				key.getDefaultKeyboard());
 		List<WandaKeyListener> listenerList = null;

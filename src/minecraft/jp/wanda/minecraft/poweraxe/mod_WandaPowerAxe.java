@@ -86,8 +86,7 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 		instance = this;
 		FMLLog.info("Init WandaPowerAxe");
 		if (event.getSide() == Side.CLIENT) {
-			WandaKeyRegistry.instance.registerWandaKeyListener(WandaKey.TOGGLE,
-					this);
+			WandaKeyRegistry.registerWandaKeyListener(WandaKey.TOGGLE, this);
 		}
 		Property propertyItemID = config.getOrCreateIntProperty("ItemID",
 				"general", 5000);

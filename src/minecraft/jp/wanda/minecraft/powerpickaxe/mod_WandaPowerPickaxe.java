@@ -76,7 +76,7 @@ public class mod_WandaPowerPickaxe extends WandaModBase implements
 				new NetworkHandler());
 		instance = this;
 		if (event.getSide() == Side.CLIENT) {
-			WandaKeyRegistry.instance.registerWandaKeyListener(WandaKey.TOGGLE,
+			WandaKeyRegistry.registerWandaKeyListener(WandaKey.TOGGLE,
 					this);
 		}
 		Property propertyItemID = config.getOrCreateIntProperty("ItemID",
