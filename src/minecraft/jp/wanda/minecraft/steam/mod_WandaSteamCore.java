@@ -1,8 +1,6 @@
 package jp.wanda.minecraft.steam;
 
 import jp.wanda.minecraft.WandaModBase;
-import jp.wanda.minecraft.core.WandaBasePacketHandler;
-import jp.wanda.minecraft.core.WandaBasePacketHandler.PacketType;
 import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
@@ -13,7 +11,6 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -48,9 +45,6 @@ public class mod_WandaSteamCore extends WandaModBase {
 		int fuelGeneratorID = config.getOrCreateIntProperty(
 				"Steam Fuel Generator", "block", 160).getInt();
 		config.save();
-
-		WandaBasePacketHandler.registerTileEntityPacketChannel("WandaSteamFG",
-				PacketType.TILE_ENTITY);
 
 		WandaSteamFuel fuel = new WandaSteamFuel(fuelID);
 		fuel.setItemName("Steam Fuel");

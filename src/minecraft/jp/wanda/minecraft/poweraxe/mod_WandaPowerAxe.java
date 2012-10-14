@@ -1,20 +1,15 @@
 package jp.wanda.minecraft.poweraxe;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import WandaResource.WandaKeyRegistry;
-import WandaResource.WandaKeyRegistry.WandaKey;
-import WandaResource.WandaKeyRegistry.WandaKeyListener;
-
 import jp.wanda.minecraft.MaterialTable;
 import jp.wanda.minecraft.WandaModBase;
+import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry;
+import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry.WandaPacektHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.EntityPlayerMP;
@@ -30,11 +25,14 @@ import net.minecraft.src.Packet;
 import net.minecraft.src.Packet1Login;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraftforge.common.Property;
+import WandaResource.WandaKeyRegistry;
+import WandaResource.WandaKeyRegistry.WandaKey;
+import WandaResource.WandaKeyRegistry.WandaKeyListener;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.asm.SideOnly;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -44,10 +42,9 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.server.FMLServerHandler;
 
 @Mod(modid = "WandaPowerAxe", name = "Wanda Power Axe", version = "0.4.0", dependencies = "required-after:WandaResource")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { "WandaPowerAxe" }, packetHandler = mod_WandaPowerAxe.NetworkHandler.class, connectionHandler = mod_WandaPowerAxe.NetworkHandler.class, versionBounds = "[0.4.0]")
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, versionBounds = "[0.4.0]")
 public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener {
 
 	public static Map<EnumToolMaterial, PowerAxe> axe;
@@ -61,11 +58,12 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 	private List<Integer> axeItemIDList;
 	private double exhaustionRatio;
 
-	public static class NetworkHandler implements IPacketHandler,
-			IConnectionHandler {
+	public static class NetworkHandler implements WandaPacektHandler {
+
 		@Override
-		public void onPacketData(NetworkManager manager,
-				Packet250CustomPayload packet, Player player) {
+		public void onPacketData(String subChannel, byte[] data,
+				NetworkManager manager, Packet250CustomPayload origin,
+				Player player) {
 			if (player instanceof EntityPlayerMP) {
 				EntityPlayerMP new_name = (EntityPlayerMP) player;
 				Property propertyEnable = instance.getEnable(new_name.username);
@@ -78,45 +76,18 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 				instance.config.save();
 			}
 		}
-
-		@Override
-		public void playerLoggedIn(Player player, NetHandler netHandler,
-				NetworkManager manager) {
-		}
-
-		@Override
-		public String connectionReceived(NetLoginHandler netHandler,
-				NetworkManager manager) {
-			return null;
-		}
-
-		@Override
-		public void connectionOpened(NetHandler netClientHandler,
-				String server, int port, NetworkManager manager) {
-		}
-
-		@Override
-		public void connectionOpened(NetHandler netClientHandler,
-				MinecraftServer server, NetworkManager manager) {
-		}
-
-		@Override
-		public void connectionClosed(NetworkManager manager) {
-		}
-
-		@Override
-		public void clientLoggedIn(NetHandler clientHandler,
-				NetworkManager manager, Packet1Login login) {
-		}
 	}
 
 	@Init
 	public void init(FMLInitializationEvent event) {
 		super.init(event);
+		WandaPacketHandlerRegistry.registerPacketChannel(getModID(),
+				new NetworkHandler());
 		instance = this;
 		FMLLog.info("Init WandaPowerAxe");
 		if (event.getSide() == Side.CLIENT) {
-			WandaKeyRegistry.instance.registerWandaKeyListener(WandaKey.TOGGLE, this);
+			WandaKeyRegistry.instance.registerWandaKeyListener(WandaKey.TOGGLE,
+					this);
 		}
 		Property propertyItemID = config.getOrCreateIntProperty("ItemID",
 				"general", 5000);
@@ -185,14 +156,6 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 		return "WandaPowerAxe";
 	}
 
-	public static Packet getPacket() {
-		Packet250CustomPayload pkt = new Packet250CustomPayload();
-		pkt.channel = "WandaPowerAxe";
-		pkt.length = 0;
-		pkt.isChunkDataPacket = false;
-		return pkt;
-	}
-
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void keyDown(WandaKey wandaKey, EnumSet<TickType> types,
@@ -203,7 +166,9 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 				ItemStack item = mc.thePlayer.getCurrentEquippedItem();
 				if (item != null
 						&& instance.axeItemIDList.contains(item.itemID)) {
-					FMLClientHandler.instance().sendPacket(getPacket());
+					FMLClientHandler.instance().sendPacket(
+							WandaPacketHandlerRegistry.createWandaPacket(
+									getModID(), null, false));
 				}
 			}
 		}

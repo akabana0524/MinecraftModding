@@ -1,18 +1,14 @@
 package jp.wanda.minecraft.core;
 
 import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry;
 import jp.wanda.minecraft.core.tileentity.WandaFacingData;
-
-import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.Packet;
-import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.TileEntity;
 
 abstract public class WandaTileEntityBase extends TileEntity {
@@ -94,13 +90,8 @@ abstract public class WandaTileEntityBase extends TileEntity {
 			e.printStackTrace();
 		}
 
-		Packet250CustomPayload packet = new Packet250CustomPayload();
-		packet.channel = entity.getChannel();
-		packet.data = bos.toByteArray();
-		packet.length = bos.size();
-		packet.isChunkDataPacket = true;
-
-		return packet;
+		return WandaPacketHandlerRegistry.createWandaPacket("WandaTileEntity",
+				bos.toByteArray(), true);
 	}
 
 	public void initialize(WandaContainerBase generatorContainer) {

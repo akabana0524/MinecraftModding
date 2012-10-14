@@ -207,7 +207,7 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 
 		@Override
 		public String getChannel() {
-			return "WandaSteamFG";
+			return "WandaTileEntity";
 		}
 
 	}
