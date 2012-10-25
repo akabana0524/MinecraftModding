@@ -2,22 +2,17 @@ package jp.wanda.minecraft.steam.drill;
 
 import jp.wanda.minecraft.steam.WandaSteamFuel;
 import jp.wanda.minecraft.steam.WandaSteamFuelMachine;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.src.Block;
-import net.minecraft.src.EntityClientPlayerMP;
 import net.minecraft.src.Item;
-import net.minecraft.src.ItemRenderer;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.RenderBlocks;
 import net.minecraft.src.RenderItem;
-import net.minecraft.src.RenderMagmaCube;
-import net.minecraft.src.RenderManager;
 import net.minecraft.src.Tessellator;
 import net.minecraftforge.client.IItemRenderer;
+
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.common.FMLLog;
 
 public class WandaSteamMachineRenderer implements IItemRenderer {
 	private Minecraft mc;
@@ -43,6 +38,10 @@ public class WandaSteamMachineRenderer implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack par2ItemStack,
 			Object... data) {
 		switch (type) {
+		case EQUIPPED: {
+			FMLLog.info("equipped");
+		}
+			break;
 		case INVENTORY: {
 			RenderBlocks blocks = (RenderBlocks) data[0];
 			Item item = par2ItemStack.getItem();

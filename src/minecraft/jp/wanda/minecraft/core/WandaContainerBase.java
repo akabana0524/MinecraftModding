@@ -5,6 +5,7 @@ import java.util.List;
 
 import jp.wanda.minecraft.steam.WandaSteamFuelGenerator.GeneratorTileEntity;
 
+import net.minecraft.src.Block;
 import net.minecraft.src.Container;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
@@ -17,6 +18,7 @@ import net.minecraft.src.World;
 public abstract class WandaContainerBase extends Container {
 
 	public static final int SLOT_SIZE = 18;
+	private World worldObj;
 	protected EntityPlayer player;
 	protected InventoryPlayer playerInventory;
 	protected World world;
@@ -27,6 +29,12 @@ public abstract class WandaContainerBase extends Container {
 
 	public WandaContainerBase(EntityPlayer player, World world, int x, int y,
 			int z) {
+		this(player, world, x, y, z, 8, 84);
+	}
+
+	public WandaContainerBase(EntityPlayer player, World world, int x, int y,
+			int z, int playerInventoryX, int playerInventoryY) {
+		this.worldObj = world;
 		this.player = player;
 		this.playerInventory = player.inventory;
 		this.world = world;
@@ -37,22 +45,23 @@ public abstract class WandaContainerBase extends Container {
 		for (int rows = 0; rows < 3; ++rows) {
 			for (int slotIndex = 0; slotIndex < 9; ++slotIndex) {
 				addSlotToContainer(new Slot(playerInventory, slotIndex + rows
-						* 9 + 9, 8 + slotIndex * 18, 84 + rows * 18));
+						* 9 + 9, playerInventoryX + slotIndex * 18,
+						playerInventoryY + rows * 18));
 			}
 		}
 
 		for (int slotIndex = 0; slotIndex < 9; ++slotIndex) {
 			addSlotToContainer(new Slot(playerInventory, slotIndex,
-					8 + slotIndex * 18, 142));
+					playerInventoryX + slotIndex * 18, playerInventoryY + 58));
 		}
 		extraInventoryList = new ArrayList<WandaInventoryGroup>();
+		int inventoryIndex = 36;
 		setupExtraInventory();
 		if (hasTileEntity()) {
 			TileEntity entity = world.getBlockTileEntity(x, y, z);
 			if (entity != null) {
 				if (entity instanceof WandaTileEntityBase) {
 					WandaTileEntityBase wandaTileEntity = (WandaTileEntityBase) entity;
-					int inventoryIndex = 36;
 					for (int i = 0; i < wandaTileEntity.getDataCount(); i++) {
 						WandaTileEntityData data = wandaTileEntity.getData(i);
 						if (data instanceof WandaInventoryGroup) {
@@ -69,11 +78,6 @@ public abstract class WandaContainerBase extends Container {
 	}
 
 	abstract protected boolean hasTileEntity();
-
-	@Override
-	public ItemStack transferStackInSlot(int par1) {
-		return null;
-	}
 
 	@Override
 	public boolean canInteractWith(EntityPlayer var1) {

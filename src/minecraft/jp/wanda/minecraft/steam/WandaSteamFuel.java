@@ -8,38 +8,98 @@ import net.minecraft.src.NBTTagCompound;
 
 public class WandaSteamFuel extends Item implements IFuelHandler {
 
+	private enum FuelType {
+		DAMAGE, STACK_SIZE, NBT,
+	}
+
 	public static int globalShiftedIndex;
 	public static int fuelGainEnergy;
+	private static final FuelType FUEL_TYPE = FuelType.NBT;
 
 	public static void addFuel(ItemStack itemStack) {
-		NBTTagCompound tag = itemStack.getTagCompound();
-		if (tag == null) {
-			tag = new NBTTagCompound();
-			itemStack.setTagCompound(tag);
+		switch (FUEL_TYPE) {
+		case DAMAGE: {
+			WandaSteamFuelMachine machine = (WandaSteamFuelMachine) itemStack
+					.getItem();
+			int current = itemStack.getItemDamage();
+			int fuel = Math.min(current + fuelGainEnergy, machine.getMaxFuel());
+			itemStack.setItemDamage(fuel);
 		}
-		WandaSteamFuelMachine machine = (WandaSteamFuelMachine) itemStack
-				.getItem();
-		tag.setInteger(
-				"Fuel",
-				Math.min(tag.getInteger("Fuel") + fuelGainEnergy,
-						machine.getMaxFuel()));
+			break;
+		case NBT: {
+			NBTTagCompound tag = itemStack.getTagCompound();
+			if (tag == null) {
+				tag = new NBTTagCompound();
+				itemStack.setTagCompound(tag);
+			}
+			WandaSteamFuelMachine machine = (WandaSteamFuelMachine) itemStack
+					.getItem();
+			int current = tag.getInteger("Fuel");
+			int fuel = Math.min(current + fuelGainEnergy, machine.getMaxFuel());
+			tag.setInteger("Fuel", fuel);
+		}
+			break;
+		case STACK_SIZE: {
+			WandaSteamFuelMachine machine = (WandaSteamFuelMachine) itemStack
+					.getItem();
+			int current = itemStack.stackSize;
+			int fuel = Math.min(current + fuelGainEnergy, machine.getMaxFuel());
+			itemStack.stackSize = fuel;
+		}
+			break;
+		}
 	}
 
 	public static void idlingFuelMachine(ItemStack itemStack) {
-		NBTTagCompound tag = itemStack.getTagCompound();
-		if (tag == null) {
-			return;
+		switch (FUEL_TYPE) {
+		case DAMAGE: {
+			WandaSteamFuelMachine machine = (WandaSteamFuelMachine) itemStack
+					.getItem();
+			int current = itemStack.getItemDamage();
+			int fuel = Math.max(current - 1, 0);
+			itemStack.setItemDamage(fuel);
 		}
-		int fuel = tag.getInteger("Fuel");
-		tag.setInteger("Fuel", Math.max(fuel - 1, 0));
+			break;
+		case NBT: {
+			NBTTagCompound tag = itemStack.getTagCompound();
+			if (tag == null) {
+				return;
+			}
+			WandaSteamFuelMachine machine = (WandaSteamFuelMachine) itemStack
+					.getItem();
+			int current = tag.getInteger("Fuel");
+			int fuel = Math.max(current - 1, 0);
+			tag.setInteger("Fuel", fuel);
+		}
+			break;
+		case STACK_SIZE: {
+			WandaSteamFuelMachine machine = (WandaSteamFuelMachine) itemStack
+					.getItem();
+			int current = itemStack.stackSize;
+			int fuel = Math.max(current - 1, 1);
+			itemStack.stackSize = fuel;
+		}
+			break;
+		}
 	}
 
 	public static int getFuel(ItemStack itemStack) {
-		NBTTagCompound tag = itemStack.getTagCompound();
-		if (tag == null) {
-			return 0;
+		switch (FUEL_TYPE) {
+		case DAMAGE: {
+			return itemStack.getItemDamage();
 		}
-		return tag.getInteger("Fuel");
+		case NBT: {
+			NBTTagCompound tag = itemStack.getTagCompound();
+			if (tag == null) {
+				return 0;
+			}
+			return tag.getInteger("Fuel");
+		}
+		case STACK_SIZE: {
+			return itemStack.stackSize;
+		}
+		}
+		return 0;
 	}
 
 	protected WandaSteamFuel(int par1) {

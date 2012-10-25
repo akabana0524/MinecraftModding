@@ -44,7 +44,7 @@ public class mod_WandaSteamDrill extends WandaModBase implements
 				.getInt();
 		int maxFuelValue = config.getOrCreateIntProperty(
 				"Steam Drill Max Fuel", "general", 20 * 600).getInt();
-		maxFuelValue = 150;
+//		maxFuelValue = 20;
 		config.save();
 		registDrill(event, itemID + 0, EnumToolMaterial.IRON, 0, 15,
 				maxFuelValue);

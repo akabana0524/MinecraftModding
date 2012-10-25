@@ -1,6 +1,7 @@
 package jp.wanda.minecraft.core;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class WandaReflectionHelper {
@@ -27,6 +28,28 @@ public class WandaReflectionHelper {
 		try {
 			return c.getConstructor(args);
 		} catch (NoSuchMethodException e) {
+			throw new RuntimeException(e);
+		} catch (SecurityException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static Field getField(Class c, String name) {
+		try {
+			return c.getField(name);
+		} catch (NoSuchFieldException e) {
+			throw new RuntimeException(e);
+		} catch (SecurityException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static Field getDeclaredField(Class c, String name) {
+		try {
+			Field f = c.getDeclaredField(name);
+			f.setAccessible(true);
+			return f;
+		} catch (NoSuchFieldException e) {
 			throw new RuntimeException(e);
 		} catch (SecurityException e) {
 			throw new RuntimeException(e);
