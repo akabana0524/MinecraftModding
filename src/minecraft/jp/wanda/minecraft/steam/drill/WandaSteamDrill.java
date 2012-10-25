@@ -69,11 +69,10 @@ public class WandaSteamDrill extends ItemPickaxe implements
 	}
 
 	@Override
-	public boolean func_77660_a(ItemStack itemStack, World world, int par3,
-			int par4, int par5, int par6, EntityLiving par7EntityLiving) {
+	public boolean onBlockStartBreak(ItemStack itemStack, int X, int Y, int Z,
+			EntityPlayer player) {
 		if (isEnoughFuel(itemStack)) {
-			return super.func_77660_a(itemStack, world, par3, par4, par5, par6,
-					par7EntityLiving);
+			return super.onBlockStartBreak(itemStack, X, Y, Z, player);
 		}
 		return false;
 	}

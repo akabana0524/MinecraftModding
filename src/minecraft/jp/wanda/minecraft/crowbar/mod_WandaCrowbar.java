@@ -100,7 +100,7 @@ public class mod_WandaCrowbar extends WandaModBase {
 	public void init(FMLInitializationEvent event) {
 		super.init(event);
 		FMLLog.info("Init WandaCrowbar");
-		Property propertyItemID = config.getOrCreateIntProperty("ItemID",
+		Property propertyItemID = config.get("ItemID",
 				"general", 5020);
 		config.save();
 		list = new HashMap<EnumToolMaterial, Crowbar>();

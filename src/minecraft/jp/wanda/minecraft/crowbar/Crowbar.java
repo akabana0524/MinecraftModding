@@ -26,9 +26,9 @@ public class Crowbar extends ItemTool {
 	}
 
 	@Override
-	public boolean tryPlaceIntoWorld(ItemStack itemStack,
-			EntityPlayer entityPlayer, World world, int x, int y, int z,
-			int side, float clickPosX, float clickPosY, float clickPosZ) {
+	public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer,
+			World world, int x, int y, int z, int side, float clickPosX,
+			float clickPosY, float clickPosZ) {
 		Block block = Block.blocksList[world.getBlockId(x, y, z)];
 		float check = getStrVsBlock(itemStack, block);
 
@@ -46,10 +46,9 @@ public class Crowbar extends ItemTool {
 			}
 		}
 
-		return super.tryPlaceIntoWorld(itemStack, entityPlayer, world, x, y, z,
+		return super.onItemUse(itemStack, entityPlayer, world, x, y, z,
 				side, clickPosX, clickPosY, clickPosZ);
 	}
-
 
 	@Override
 	public String getTextureFile() {

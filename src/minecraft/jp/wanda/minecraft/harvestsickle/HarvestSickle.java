@@ -29,9 +29,9 @@ public class HarvestSickle extends ItemTool {
 	}
 
 	@Override
-	public boolean tryPlaceIntoWorld(ItemStack itemStack,
-			EntityPlayer entityPlayer, World world, int x, int y, int z,
-			int side, float clickPosX, float clickPosY, float clickPosZ) {
+	public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer,
+			World world, int x, int y, int z, int side, float clickPosX,
+			float clickPosY, float clickPosZ) {
 		int blockID = world.getBlockId(x, y, z);
 		Block block = Block.blocksList[blockID];
 		int metaData = world.getBlockMetadata(x, y, z);
@@ -49,13 +49,13 @@ public class HarvestSickle extends ItemTool {
 			}
 		}
 
-		return super.tryPlaceIntoWorld(itemStack, entityPlayer, world, x, y, z,
-				side, clickPosX, clickPosY, clickPosZ);
+		return super.onItemUse(itemStack, entityPlayer, world, x, y, z, side,
+				clickPosX, clickPosY, clickPosZ);
 	}
 
 	@Override
-	public boolean func_77660_a(ItemStack itemStack, World world, int blockID,
-			int x, int y, int z, EntityLiving entityLiving) {
+	public boolean onBlockDestroyed(ItemStack itemStack, World world,
+			int blockID, int x, int y, int z, EntityLiving entityLiving) {
 		if (!world.isRemote) {
 			EntityPlayerMP player = (EntityPlayerMP) entityLiving;
 			Block block = Block.blocksList[blockID];
@@ -69,7 +69,7 @@ public class HarvestSickle extends ItemTool {
 			}
 		}
 
-		return super.func_77660_a(itemStack, world, blockID, x, y, z,
+		return super.onBlockDestroyed(itemStack, world, blockID, x, y, z,
 				entityLiving);
 	}
 

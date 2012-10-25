@@ -28,9 +28,9 @@ public class mod_WandaSlingshot extends WandaModBase {
 		super.init(event);
 		FMLLog.info("Init WandaSlingshot");
 
-		Property propertyItemID = config.getOrCreateIntProperty("ItemID",
+		Property propertyItemID = config.get("ItemID",
 				"general", 5040);
-		Property propertyEntityID = config.getOrCreateIntProperty(
+		Property propertyEntityID = config.get(
 				"BulletEntityID", "general", 220);
 		config.save();
 

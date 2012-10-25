@@ -40,9 +40,9 @@ public class mod_WandaSteamDrill extends WandaModBase implements
 	public void init(FMLInitializationEvent event) {
 		super.init(event);
 		FMLLog.info("Init " + getModID());
-		int itemID = config.getOrCreateIntProperty("Steam Drill", "item", 6100)
+		int itemID = config.get("Steam Drill", "item", 6100)
 				.getInt();
-		int maxFuelValue = config.getOrCreateIntProperty(
+		int maxFuelValue = config.get(
 				"Steam Drill Max Fuel", "general", 20 * 600).getInt();
 //		maxFuelValue = 20;
 		config.save();

@@ -7,7 +7,7 @@ import jp.wanda.minecraft.core.WandaTileEntityBase;
 import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry;
 import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry.WandaPacektHandler;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.NetworkManager;
+import net.minecraft.src.INetworkManager;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
@@ -37,7 +37,7 @@ public class WandaResource {
 
 					@Override
 					public void onPacketData(String subChannel, byte[] data,
-							NetworkManager manager,
+							INetworkManager manager,
 							Packet250CustomPayload origin, Player player) {
 						ByteArrayDataInput din = ByteStreams
 								.newDataInput(data);

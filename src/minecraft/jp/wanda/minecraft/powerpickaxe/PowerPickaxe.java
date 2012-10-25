@@ -39,7 +39,7 @@ public class PowerPickaxe extends ItemPickaxe {
 	}
 
 	@Override
-	public boolean func_77660_a(ItemStack itemStack, World world, int blockID,
+	public boolean onBlockDestroyed(ItemStack itemStack, World world, int blockID,
 			int x, int y, int z, EntityLiving entityLiving) {
 		if (!world.isRemote) {
 			EntityPlayerMP player = (EntityPlayerMP) entityLiving;
@@ -54,7 +54,7 @@ public class PowerPickaxe extends ItemPickaxe {
 			}
 		}
 
-		return super.func_77660_a(itemStack, world, blockID, x, y, z,
+		return super.onBlockDestroyed(itemStack, world, blockID, x, y, z,
 				entityLiving);
 	}
 

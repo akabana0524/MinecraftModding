@@ -8,12 +8,12 @@ import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry.WandaPacektHand
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.INetworkManager;
 import net.minecraft.src.InventoryPlayer;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.KeyBinding;
 import net.minecraft.src.Material;
-import net.minecraft.src.NetworkManager;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraftforge.client.MinecraftForgeClient;
 
@@ -81,7 +81,7 @@ public class mod_WandaSteamCore extends WandaModBase implements
 				new WandaPacektHandler() {
 					@Override
 					public void onPacketData(String subChannel, byte[] data,
-							NetworkManager manager,
+							INetworkManager manager,
 							Packet250CustomPayload origin, Player player) {
 						EntityPlayer entityPlayer = (EntityPlayer) player;
 						InventoryPlayer inv = entityPlayer.inventory;
@@ -99,13 +99,13 @@ public class mod_WandaSteamCore extends WandaModBase implements
 
 					}
 				});
-		int fuelID = config.getOrCreateIntProperty("Steam Fuel", "item", 6000)
+		int fuelID = config.get("Steam Fuel", "item", 6000)
 				.getInt();
-		int smallEngineID = config.getOrCreateIntProperty("Steam Engine small",
+		int smallEngineID = config.get("Steam Engine small",
 				"item", 6001).getInt();
-		int fuelGeneratorID = config.getOrCreateIntProperty(
+		int fuelGeneratorID = config.get(
 				"Steam Fuel Generator", "block", 160).getInt();
-		int fuelEnergy = config.getOrCreateIntProperty("Steam Fuel Energy",
+		int fuelEnergy = config.get("Steam Fuel Energy",
 				"general", 20 * 600).getInt();
 		config.save();
 

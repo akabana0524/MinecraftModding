@@ -6,24 +6,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jp.wanda.minecraft.core.WandaTileEntityBase;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.src.NetworkManager;
+import net.minecraft.src.INetworkManager;
 import net.minecraft.src.Packet250CustomPayload;
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.World;
-
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
-
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -32,7 +20,7 @@ public class WandaPacketHandlerRegistry implements IPacketHandler {
 
 	public interface WandaPacektHandler {
 		void onPacketData(String subChannel, byte[] data,
-				NetworkManager manager, Packet250CustomPayload origin,
+				INetworkManager manager, Packet250CustomPayload origin,
 				Player player);
 	}
 
@@ -81,7 +69,7 @@ public class WandaPacketHandlerRegistry implements IPacketHandler {
 	}
 
 	@Override
-	public void onPacketData(NetworkManager manager,
+	public void onPacketData(INetworkManager manager,
 			Packet250CustomPayload packet, Player player) {
 		if (packet.channel.equals(CHANNEL)) {
 			ByteArrayInputStream bin = new ByteArrayInputStream(packet.data);

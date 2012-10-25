@@ -59,9 +59,8 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 			generatorTileEntity = (GeneratorTileEntity) world
 					.getBlockTileEntity(x, y, z);
 		}
-
 		@Override
-		protected void drawGuiContainerForegroundLayer() {
+		protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 			fontRenderer.drawString(
 					"Energy:" + generatorTileEntity.ep.getEnergy(), 8, 6,
 					0x404040);

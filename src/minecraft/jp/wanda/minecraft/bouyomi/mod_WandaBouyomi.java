@@ -8,9 +8,9 @@ import jp.snowink.bouyomichan.BouyomiChan4J;
 import jp.wanda.minecraft.WandaModBase;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.INetworkManager;
 import net.minecraft.src.NetHandler;
 import net.minecraft.src.NetLoginHandler;
-import net.minecraft.src.NetworkManager;
 import net.minecraft.src.Packet1Login;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.Packet3Chat;
@@ -133,17 +133,17 @@ public class mod_WandaBouyomi extends WandaModBase implements IChatListener,
 		super.init(event);
 		FMLLog.info("Init WandaBouyomi");
 		// MinecraftForge.EVENT_BUS.register(new EventHook());
-		Property propertyHost = config.getOrCreateProperty("HostIP", "general",
+		Property propertyHost = config.get("HostIP", "general",
 				"localhost");
-		Property propertyPort = config.getOrCreateIntProperty("Port",
+		Property propertyPort = config.get("Port",
 				"general", 50001);
-		Property propertyVolume = config.getOrCreateIntProperty("Volume",
+		Property propertyVolume = config.get("Volume",
 				"general", -1);
-		Property propertySpeed = config.getOrCreateIntProperty("Speed",
+		Property propertySpeed = config.get("Speed",
 				"general", -1);
-		Property propertyTone = config.getOrCreateIntProperty("Tone",
+		Property propertyTone = config.get("Tone",
 				"general", -1);
-		Property propertyVoice = config.getOrCreateIntProperty("Voice",
+		Property propertyVoice = config.get("Voice",
 				"general", 0);
 		config.save();
 
@@ -186,32 +186,32 @@ public class mod_WandaBouyomi extends WandaModBase implements IChatListener,
 
 	@Override
 	public void playerLoggedIn(Player player, NetHandler netHandler,
-			NetworkManager manager) {
+			INetworkManager manager) {
 	}
 
 	@Override
 	public String connectionReceived(NetLoginHandler netHandler,
-			NetworkManager manager) {
+			INetworkManager manager) {
 		return null;
 	}
 
 	@Override
 	public void connectionOpened(NetHandler netClientHandler, String server,
-			int port, NetworkManager manager) {
+			int port, INetworkManager manager) {
 	}
 
 	@Override
 	public void connectionOpened(NetHandler netClientHandler,
-			MinecraftServer server, NetworkManager manager) {
+			MinecraftServer server, INetworkManager manager) {
 	}
 
 	@Override
-	public void connectionClosed(NetworkManager manager) {
+	public void connectionClosed(INetworkManager manager) {
 	}
 
 	@Override
 	public void clientLoggedIn(NetHandler clientHandler,
-			NetworkManager manager, Packet1Login login) {
+			INetworkManager manager, Packet1Login login) {
 		if (clientHandler.isServerHandler()) {
 			MinecraftServer server = MinecraftServer.getServer();
 			List list = server.getConfigurationManager().playerEntityList;
@@ -231,7 +231,7 @@ public class mod_WandaBouyomi extends WandaModBase implements IChatListener,
 	}
 
 	@Override
-	public void onPacketData(NetworkManager manager,
+	public void onPacketData(INetworkManager manager,
 			Packet250CustomPayload packet, Player player) {
 
 	}

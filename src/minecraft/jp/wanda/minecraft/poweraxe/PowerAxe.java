@@ -32,7 +32,7 @@ public class PowerAxe extends ItemAxe {
 	}
 
 	@Override
-	public boolean func_77660_a(ItemStack itemStack, World world, int blockID,
+	public boolean onBlockDestroyed(ItemStack itemStack, World world, int blockID,
 			int x, int y, int z, EntityLiving entityLiving) {
 		int damage = itemStack.getItemDamage();
 		if (!world.isRemote) {
@@ -48,7 +48,7 @@ public class PowerAxe extends ItemAxe {
 			}
 		}
 
-		boolean ret = super.func_77660_a(itemStack, world, blockID, x, y, z,
+		boolean ret = super.onBlockDestroyed(itemStack, world, blockID, x, y, z,
 				entityLiving);
 		return ret;
 	}

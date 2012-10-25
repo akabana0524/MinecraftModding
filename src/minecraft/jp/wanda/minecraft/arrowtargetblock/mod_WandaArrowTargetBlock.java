@@ -25,7 +25,7 @@ public class mod_WandaArrowTargetBlock extends WandaModBase {
 		super.init(event);
 		FMLLog.info("Init WandaArrowTargetBlock");
 
-		Property propertyBlockID = config.getOrCreateIntProperty("BlockID",
+		Property propertyBlockID = config.get("BlockID",
 				"general", 150);
 		config.save();
 		block = new ArrowTargetBlock(propertyBlockID.getInt(), Material.wood);

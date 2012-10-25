@@ -183,7 +183,7 @@ public class EntitySlingshotBullet extends Entity {
 							this.yTile, this.zTile);
 
 			if (var2 != null
-					&& var2.isVecInside(Vec3.getVec3Pool().getVecFromPool(
+					&& var2.isVecInside(Vec3.createVectorHelper(
 							this.posX, this.posY, this.posZ))) {
 				this.inGround = true;
 			}
@@ -211,20 +211,20 @@ public class EntitySlingshotBullet extends Entity {
 			}
 		} else {
 			++this.ticksInAir;
-			Vec3 var17 = Vec3.getVec3Pool().getVecFromPool(this.posX,
+			Vec3 var17 = Vec3.createVectorHelper(this.posX,
 					this.posY, this.posZ);
-			Vec3 var3 = Vec3.getVec3Pool().getVecFromPool(
+			Vec3 var3 = Vec3.createVectorHelper(
 					this.posX + this.motionX, this.posY + this.motionY,
 					this.posZ + this.motionZ);
 			MovingObjectPosition var4 = this.worldObj.rayTraceBlocks_do_do(
 					var17, var3, false, true);
-			var17 = Vec3.getVec3Pool().getVecFromPool(this.posX, this.posY,
+			var17 = Vec3.createVectorHelper(this.posX, this.posY,
 					this.posZ);
-			var3 = Vec3.getVec3Pool().getVecFromPool(this.posX + this.motionX,
+			var3 = Vec3.createVectorHelper(this.posX + this.motionX,
 					this.posY + this.motionY, this.posZ + this.motionZ);
 
 			if (var4 != null) {
-				var3 = Vec3.getVec3Pool().getVecFromPool(var4.hitVec.xCoord,
+				var3 = Vec3.createVectorHelper(var4.hitVec.xCoord,
 						var4.hitVec.yCoord, var4.hitVec.zCoord);
 			}
 
@@ -315,7 +315,7 @@ public class EntitySlingshotBullet extends Entity {
 						}
 
 						this.worldObj.playSoundAtEntity(this,
-								"damage.fallsmall", 1.0F,
+								"damage.fallbig", 1.0F,
 								1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 						if (!worldObj.isRemote) {
 							addEffect(this.worldObj, null,
@@ -352,7 +352,7 @@ public class EntitySlingshotBullet extends Entity {
 							* 0.05000000074505806D;
 					this.posZ -= this.motionZ / (double) var20
 							* 0.05000000074505806D;
-					this.worldObj.playSoundAtEntity(this, "damage.fallsmall",
+					this.worldObj.playSoundAtEntity(this, "damage.fallbig",
 							1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 
 					if (!worldObj.isRemote) {
@@ -446,9 +446,9 @@ public class EntitySlingshotBullet extends Entity {
 						(double) e,
 						(double) f,
 						64.0D,
-						world.provider.worldType,
+						world.provider.dimensionId,
 						new Packet61DoorChange(2001, (int) d, (int) e, (int) f,
-								Block.cobblestone.blockID));
+								Block.cobblestone.blockID, false));
 	}
 
 	/**

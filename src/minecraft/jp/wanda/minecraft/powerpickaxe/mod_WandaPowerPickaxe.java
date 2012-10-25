@@ -14,10 +14,10 @@ import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry.WandaPacektHand
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.EntityPlayerMP;
 import net.minecraft.src.EnumToolMaterial;
+import net.minecraft.src.INetworkManager;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.KeyBinding;
-import net.minecraft.src.NetworkManager;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraftforge.common.Property;
 import WandaResource.WandaKeyRegistry;
@@ -44,7 +44,7 @@ public class mod_WandaPowerPickaxe extends WandaModBase implements
 	public static class NetworkHandler implements WandaPacektHandler {
 		@Override
 		public void onPacketData(String subChannel, byte[] data,
-				NetworkManager manager, Packet250CustomPayload origin,
+				INetworkManager manager, Packet250CustomPayload origin,
 				Player player) {
 			if (player instanceof EntityPlayerMP) {
 				EntityPlayerMP new_name = (EntityPlayerMP) player;
@@ -79,23 +79,23 @@ public class mod_WandaPowerPickaxe extends WandaModBase implements
 			WandaKeyRegistry.registerWandaKeyListener(WandaKey.TOGGLE,
 					this);
 		}
-		Property propertyItemID = config.getOrCreateIntProperty("ItemID",
+		Property propertyItemID = config.get("ItemID",
 				"general", 5030);
-		Property propertyTarget = config.getOrCreateProperty("TargetBlockID",
+		Property propertyTarget = config.get("TargetBlockID",
 				"general", "");
-		Property propertyEnableOre = config.getOrCreateBooleanProperty(
+		Property propertyEnableOre = config.get(
 				"EnableOre", "general", true);
-		Property propertyEnableRedstone = config.getOrCreateBooleanProperty(
+		Property propertyEnableRedstone = config.get(
 				"EnableRedstone", "general", true);
-		Property propertyEnableGrowstone = config.getOrCreateBooleanProperty(
+		Property propertyEnableGrowstone = config.get(
 				"EnableGrowstone", "general", true);
-		Property propertyMaxRange = config.getOrCreateProperty("MaxRange",
+		Property propertyMaxRange = config.get("MaxRange",
 				"general", "10.0");
-		Property propertyEnableEffect = config.getOrCreateBooleanProperty(
+		Property propertyEnableEffect = config.get(
 				"EnableEffect", "general", true);
-		Property propertyDamageRatio = config.getOrCreateProperty(
+		Property propertyDamageRatio = config.get(
 				"DamageRatio", "general", "1");
-		Property propertyExhaustionRatio = config.getOrCreateProperty(
+		Property propertyExhaustionRatio = config.get(
 				"ExhaustionRatio", "general", "0.05");
 
 		int itemID = propertyItemID.getInt();
@@ -177,7 +177,7 @@ public class mod_WandaPowerPickaxe extends WandaModBase implements
 	}
 
 	private Property getEnable(String username) {
-		Property propertyEnable = config.getOrCreateBooleanProperty(username,
+		Property propertyEnable = config.get(username,
 				"Enable", true);
 		return propertyEnable;
 	}

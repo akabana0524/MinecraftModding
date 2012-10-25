@@ -11,18 +11,13 @@ import jp.wanda.minecraft.WandaModBase;
 import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry;
 import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry.WandaPacektHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.EntityPlayerMP;
 import net.minecraft.src.EnumToolMaterial;
+import net.minecraft.src.INetworkManager;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.KeyBinding;
 import net.minecraft.src.MLProp;
-import net.minecraft.src.NetHandler;
-import net.minecraft.src.NetLoginHandler;
-import net.minecraft.src.NetworkManager;
-import net.minecraft.src.Packet;
-import net.minecraft.src.Packet1Login;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraftforge.common.Property;
 import WandaResource.WandaKeyRegistry;
@@ -36,8 +31,6 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.asm.SideOnly;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.network.IConnectionHandler;
-import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -62,7 +55,7 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 
 		@Override
 		public void onPacketData(String subChannel, byte[] data,
-				NetworkManager manager, Packet250CustomPayload origin,
+				INetworkManager manager, Packet250CustomPayload origin,
 				Player player) {
 			if (player instanceof EntityPlayerMP) {
 				EntityPlayerMP new_name = (EntityPlayerMP) player;
@@ -88,19 +81,19 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 		if (event.getSide() == Side.CLIENT) {
 			WandaKeyRegistry.registerWandaKeyListener(WandaKey.TOGGLE, this);
 		}
-		Property propertyItemID = config.getOrCreateIntProperty("ItemID",
+		Property propertyItemID = config.get("ItemID",
 				"general", 5000);
-		Property propertyEnableEffect = config.getOrCreateBooleanProperty(
+		Property propertyEnableEffect = config.get(
 				"EnableEffect", "general", true);
-		Property propertyTarget = config.getOrCreateProperty("TargetBlockID",
+		Property propertyTarget = config.get("TargetBlockID",
 				"general", "");
-		Property propertyHorizontalRange = config.getOrCreateIntProperty(
+		Property propertyHorizontalRange = config.get(
 				"HorizontalRange", "general", 10);
-		Property propertyVerticalRange = config.getOrCreateIntProperty(
+		Property propertyVerticalRange = config.get(
 				"VerticalRange", "general", 50);
-		Property propertyDamageRatio = config.getOrCreateProperty(
+		Property propertyDamageRatio = config.get(
 				"DamageRatio", "general", "0.2");
-		Property propertyExhaustionRatio = config.getOrCreateProperty(
+		Property propertyExhaustionRatio = config.get(
 				"ExhaustionRatio", "general", "0.03125");
 
 		config.save();
@@ -180,7 +173,7 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 	}
 
 	private Property getEnable(String username) {
-		Property propertyEnable = config.getOrCreateBooleanProperty(username,
+		Property propertyEnable = config.get(username,
 				"Enable", true);
 		return propertyEnable;
 	}

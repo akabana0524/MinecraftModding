@@ -45,9 +45,11 @@ public class WandaSteamMachineRenderer implements IItemRenderer {
 		case INVENTORY: {
 			RenderBlocks blocks = (RenderBlocks) data[0];
 			Item item = par2ItemStack.getItem();
-			render.drawItemIntoGui(mc.fontRenderer, mc.renderEngine,
-					par2ItemStack.itemID, par2ItemStack.getItemDamage(),
-					par2ItemStack.getIconIndex(), 0, 0);
+			render.renderItemIntoGUI(mc.fontRenderer, mc.renderEngine,
+					par2ItemStack, 0, 0);
+			// render.drawItemIntoGui(mc.fontRenderer, mc.renderEngine,
+			// par2ItemStack.itemID, par2ItemStack.getItemDamage(),
+			// par2ItemStack.getIconIndex(), 0, 0);
 			if (item instanceof WandaSteamFuelMachine) {
 				int fuel = WandaSteamFuel.getFuel(par2ItemStack);
 				WandaSteamFuelMachine fuelMachine = (WandaSteamFuelMachine) item;
