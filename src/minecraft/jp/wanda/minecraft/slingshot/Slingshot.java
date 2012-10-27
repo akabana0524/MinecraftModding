@@ -1,5 +1,6 @@
 package jp.wanda.minecraft.slingshot;
 
+import jp.wanda.minecraft.res.WandaResource;
 import net.minecraft.src.Block;
 import net.minecraft.src.Enchantment;
 import net.minecraft.src.EnchantmentHelper;
@@ -8,13 +9,12 @@ import net.minecraft.src.ItemBow;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 
-public class ItemSlingshot extends ItemBow {
+public class Slingshot extends ItemBow {
 
-	protected ItemSlingshot(int par1) {
+	protected Slingshot(int par1) {
 		super(par1);
 		iconIndex = 0;
 	}
-
 
 	public void onPlayerStoppedUsing(ItemStack itemStack, World world,
 			EntityPlayer entityPlayer, int duration) {
@@ -98,27 +98,26 @@ public class ItemSlingshot extends ItemBow {
 
 	@Override
 	public String getTextureFile() {
-		return "/WandaResource/WandaItems.png";
+		return WandaResource.TEXTURE_ITEMS;
 	}
+
 	@Override
 	public int getIconIndex(ItemStack stack, int renderPass,
 			EntityPlayer player, ItemStack usingItem, int useRemaining) {
-        int var4 = stack.getMaxItemUseDuration() - player.getItemInUseCount();
+		int var4 = stack.getMaxItemUseDuration() - player.getItemInUseCount();
 
-        if (var4 >= 18)
-        {
-            return 3;
-        }
+		if (var4 >= 18) {
+			return 3;
+		}
 
-        if (var4 > 13)
-        {
-            return 2;
-        }
+		if (var4 > 13) {
+			return 2;
+		}
 
-        if (var4 > 0)
-        {
-            return 1;
-        }
-		return super.getIconIndex(stack, renderPass, player, usingItem, useRemaining);
+		if (var4 > 0) {
+			return 1;
+		}
+		return super.getIconIndex(stack, renderPass, player, usingItem,
+				useRemaining);
 	}
 }

@@ -6,7 +6,8 @@ import java.util.List;
 
 import cpw.mods.fml.common.asm.SideOnly;
 
-import jp.wanda.minecraft.MaterialTable;
+import jp.wanda.minecraft.core.MaterialTable;
+import jp.wanda.minecraft.res.WandaResource;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityLiving;
@@ -128,7 +129,7 @@ public class HarvestSickle extends ItemTool {
 
 	@Override
 	public String getTextureFile() {
-		return "/WandaResource/WandaTools.png";
+		return WandaResource.TEXTURE_TOOLS;
 	}
 
 	public void setEnableEffect(boolean enable) {

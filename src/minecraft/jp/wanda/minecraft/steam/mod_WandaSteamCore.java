@@ -2,7 +2,10 @@ package jp.wanda.minecraft.steam;
 
 import java.util.EnumSet;
 
-import jp.wanda.minecraft.WandaModBase;
+import jp.wanda.minecraft.core.WandaKeyRegistry;
+import jp.wanda.minecraft.core.WandaModBase;
+import jp.wanda.minecraft.core.WandaKeyRegistry.WandaKey;
+import jp.wanda.minecraft.core.WandaKeyRegistry.WandaKeyListener;
 import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry;
 import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry.WandaPacektHandler;
 import net.minecraft.client.Minecraft;
@@ -19,9 +22,6 @@ import net.minecraftforge.client.MinecraftForgeClient;
 
 import org.lwjgl.input.Keyboard;
 
-import WandaResource.WandaKeyRegistry;
-import WandaResource.WandaKeyRegistry.WandaKey;
-import WandaResource.WandaKeyRegistry.WandaKeyListener;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;

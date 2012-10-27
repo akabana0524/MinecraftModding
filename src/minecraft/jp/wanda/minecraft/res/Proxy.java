@@ -1,4 +1,4 @@
-package WandaResource;
+package jp.wanda.minecraft.res;
 
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.World;

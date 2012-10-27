@@ -1,5 +1,6 @@
-package WandaResource;
+package jp.wanda.minecraft.res;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,15 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.Player;
 
-@Mod(modid = "WandaResource", name = "Wanda Resource", version = "0.3.0")
+@Mod(modid = "WandaResource", name = "Wanda Resource", version = "0.5.0", dependencies = "required-after:WandaCore")
 @NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = { "WandaGeneral" }, packetHandler = WandaPacketHandlerRegistry.class)
 public class WandaResource {
-	@SidedProxy(clientSide = "WandaResource.Client", serverSide = "WandaResource.Server")
+	public static final String RES_FOLDER = "/jp/wanda/minecraft/res";
+	public static final String TEXTURE_BLOCK = RES_FOLDER + "/WandaBlocks.png";
+	public static final String TEXTURE_ITEMS = RES_FOLDER + "/WandaItems.png";
+	public static final String TEXTURE_TOOLS = RES_FOLDER + "/WandaTools.png";
+
+	@SidedProxy(clientSide = "jp.wanda.minecraft.res.Client", serverSide = "jp.wanda.minecraft.res.Server")
 	public static Proxy proxy;
 
 	@Init
@@ -39,8 +45,7 @@ public class WandaResource {
 					public void onPacketData(String subChannel, byte[] data,
 							INetworkManager manager,
 							Packet250CustomPayload origin, Player player) {
-						ByteArrayDataInput din = ByteStreams
-								.newDataInput(data);
+						ByteArrayDataInput din = ByteStreams.newDataInput(data);
 						int x, y, z;
 						byte facing;
 						try {

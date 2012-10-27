@@ -3,8 +3,8 @@ package jp.wanda.minecraft.harvestsickle;
 import java.util.HashMap;
 import java.util.logging.Level;
 
-import jp.wanda.minecraft.MaterialTable;
-import jp.wanda.minecraft.WandaModBase;
+import jp.wanda.minecraft.core.MaterialTable;
+import jp.wanda.minecraft.core.WandaModBase;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
@@ -16,7 +16,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "WandaHarvestSickle", name = "Wanda Harvest Sickle", version = "0.3.0", dependencies = "required-after:WandaResource")
+@Mod(modid = "WandaHarvestSickle", name = "Wanda Harvest Sickle", version = "0.5.0", dependencies = "required-after:WandaResource")
 public class mod_WandaHarvestSickle extends WandaModBase {
 
 	private HashMap<EnumToolMaterial, HarvestSickle> list;

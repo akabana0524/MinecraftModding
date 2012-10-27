@@ -1,6 +1,6 @@
 package jp.wanda.minecraft.arrowtargetblock;
 
-import jp.wanda.minecraft.WandaModBase;
+import jp.wanda.minecraft.core.WandaModBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
@@ -15,7 +15,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "WandaArrowTarget", name = "Wanda Arrow Target", version = "0.3.0", dependencies = "required-after:WandaResource")
+@Mod(modid = "WandaArrowTarget", name = "Wanda Arrow Target", version = "0.5.0", dependencies = "required-after:WandaResource")
 public class mod_WandaArrowTargetBlock extends WandaModBase {
 
 	public static Block block;

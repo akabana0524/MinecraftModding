@@ -1,6 +1,6 @@
 package jp.wanda.minecraft.ai;
 
-import jp.wanda.minecraft.WandaModBase;
+import jp.wanda.minecraft.core.WandaModBase;
 import jp.wanda.minecraft.steam.mod_WandaSteamCore;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.EnumCreatureType;
@@ -21,7 +21,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "WandaAI", name = "Wanda AI", version = "0.0.1", dependencies = "required-after:WandaResource")
+@Mod(modid = "WandaAI", name = "Wanda AI", version = "0.0.1", dependencies = "required-after:WandaCore")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_WandaAI extends WandaModBase {
 

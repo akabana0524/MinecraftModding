@@ -6,8 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jp.wanda.minecraft.MaterialTable;
-import jp.wanda.minecraft.WandaModBase;
+import jp.wanda.minecraft.core.MaterialTable;
+import jp.wanda.minecraft.core.WandaKeyRegistry;
+import jp.wanda.minecraft.core.WandaModBase;
+import jp.wanda.minecraft.core.WandaKeyRegistry.WandaKey;
+import jp.wanda.minecraft.core.WandaKeyRegistry.WandaKeyListener;
 import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry;
 import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry.WandaPacektHandler;
 import net.minecraft.client.Minecraft;
@@ -20,9 +23,6 @@ import net.minecraft.src.KeyBinding;
 import net.minecraft.src.MLProp;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraftforge.common.Property;
-import WandaResource.WandaKeyRegistry;
-import WandaResource.WandaKeyRegistry.WandaKey;
-import WandaResource.WandaKeyRegistry.WandaKeyListener;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -36,8 +36,8 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "WandaPowerAxe", name = "Wanda Power Axe", version = "0.4.0", dependencies = "required-after:WandaResource")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, versionBounds = "[0.4.0]")
+@Mod(modid = "WandaPowerAxe", name = "Wanda Power Axe", version = "0.5.0", dependencies = "required-after:WandaResource")
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, versionBounds = "[0.5.0]")
 public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener {
 
 	public static Map<EnumToolMaterial, PowerAxe> axe;

@@ -1,7 +1,7 @@
 package jp.wanda.minecraft.slingshot;
 
 import static cpw.mods.fml.common.Side.CLIENT;
-import jp.wanda.minecraft.WandaModBase;
+import jp.wanda.minecraft.core.WandaModBase;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.MLProp;
@@ -21,7 +21,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @Mod(modid = "WandaSlingshot", name = "Wanda Slingshot", version = "0.3.0", dependencies = "required-after:WandaResource")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_WandaSlingshot extends WandaModBase {
-	public static ItemSlingshot item;
+	public static Slingshot item;
 
 	@Init
 	public void init(FMLInitializationEvent event) {
@@ -41,7 +41,7 @@ public class mod_WandaSlingshot extends WandaModBase {
 		if (event.getSide() == Side.CLIENT) {
 			registRender();
 		}
-		item = new ItemSlingshot(propertyItemID.getInt());
+		item = new Slingshot(propertyItemID.getInt());
 		item.setItemName("Slingshot");
 		LanguageRegistry.addName(item, "Slingshot");
 		GameRegistry.addRecipe(new ItemStack(item), new Object[] { "XYX",

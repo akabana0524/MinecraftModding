@@ -3,6 +3,8 @@ package jp.wanda.minecraft.crowbar;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wanda.minecraft.res.WandaResource;
+
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.EntityPlayerMP;
@@ -52,7 +54,7 @@ public class Crowbar extends ItemTool {
 
 	@Override
 	public String getTextureFile() {
-		return "/WandaResource/WandaTools.png";
+		return WandaResource.TEXTURE_TOOLS;
 	}
 
 	@Override

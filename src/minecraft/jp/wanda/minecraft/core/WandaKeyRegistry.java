@@ -1,4 +1,4 @@
-package WandaResource;
+package jp.wanda.minecraft.core;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -8,11 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import jp.wanda.minecraft.core.WandaKeyRegistry.WandaKeyListener;
+
 import net.minecraft.src.KeyBinding;
 
 import org.lwjgl.input.Keyboard;
 
-import WandaResource.WandaKeyRegistry.WandaKeyListener;
 
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;

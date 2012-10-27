@@ -2,6 +2,8 @@ package jp.wanda.minecraft.poweraxe;
 
 import java.util.ArrayList;
 
+import jp.wanda.minecraft.res.WandaResource;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import net.minecraft.src.Block;
@@ -101,7 +103,7 @@ public class PowerAxe extends ItemAxe {
 
 	@Override
 	public String getTextureFile() {
-		return "/WandaResource/WandaTools.png";
+		return WandaResource.TEXTURE_TOOLS;
 	}
 
 	public void setEnableEffect(boolean enable) {

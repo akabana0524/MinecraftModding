@@ -3,6 +3,8 @@ package jp.wanda.minecraft.powerpickaxe;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wanda.minecraft.res.WandaResource;
+
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockGlowStone;
 import net.minecraft.src.BlockOre;
@@ -113,7 +115,7 @@ public class PowerPickaxe extends ItemPickaxe {
 
 	@Override
 	public String getTextureFile() {
-		return "/WandaResource/WandaTools.png";
+		return WandaResource.TEXTURE_TOOLS;
 	}
 
 	public void setEnableGrowstone(boolean enableGrowstone) {

@@ -2,8 +2,10 @@ package jp.wanda.minecraft.steam.drill;
 
 import java.util.EnumSet;
 
-import jp.wanda.minecraft.MaterialTable;
-import jp.wanda.minecraft.WandaModBase;
+import jp.wanda.minecraft.core.MaterialTable;
+import jp.wanda.minecraft.core.WandaModBase;
+import jp.wanda.minecraft.core.WandaKeyRegistry.WandaKey;
+import jp.wanda.minecraft.core.WandaKeyRegistry.WandaKeyListener;
 import jp.wanda.minecraft.steam.WandaSteamSmallEngine;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.EnumToolMaterial;
@@ -11,8 +13,6 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.KeyBinding;
 import net.minecraftforge.client.MinecraftForgeClient;
-import WandaResource.WandaKeyRegistry.WandaKey;
-import WandaResource.WandaKeyRegistry.WandaKeyListener;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;

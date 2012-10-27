@@ -2,8 +2,8 @@ package jp.wanda.minecraft.crowbar;
 
 import java.util.HashMap;
 
-import jp.wanda.minecraft.MaterialTable;
-import jp.wanda.minecraft.WandaModBase;
+import jp.wanda.minecraft.core.MaterialTable;
+import jp.wanda.minecraft.core.WandaModBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.ItemStack;
@@ -17,7 +17,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "WandaCrowbar", name = "Wanda Crowbar", version = "0.3.0", dependencies = "required-after:WandaResource")
+@Mod(modid = "WandaCrowbar", name = "Wanda Crowbar", version = "0.5.0", dependencies = "required-after:WandaResource")
 public class mod_WandaCrowbar extends WandaModBase {
 
 	private static final Block[] blocksEffectiveAgainst;

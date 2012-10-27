@@ -1,5 +1,6 @@
 package jp.wanda.minecraft.arrowtargetblock;
 
+import jp.wanda.minecraft.res.WandaResource;
 import net.minecraft.src.Block;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityArrow;
@@ -38,6 +39,6 @@ public class ArrowTargetBlock extends Block {
 
 	@Override
 	public String getTextureFile() {
-		return "/WandaResource/WandaBlocks.png";
+		return WandaResource.TEXTURE_BLOCK;
 	}
 }

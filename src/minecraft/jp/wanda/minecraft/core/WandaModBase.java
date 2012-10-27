@@ -1,4 +1,4 @@
-package jp.wanda.minecraft;
+package jp.wanda.minecraft.core;
 
 import java.io.File;
 import java.util.logging.Level;

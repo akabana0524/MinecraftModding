@@ -1,8 +1,8 @@
 [
 {
-  "modid": "WandaPowerPickaxe",
-  "name": "Wanda Power Pickaxe",
-  "description": "Power Pickaxe, dig in bulk a large amount ore.",
+  "modid": "WandaCore",
+  "name": "Wanda Core",
+  "description": "This package is useful for modding.",
   "version": "@VERSION@",
   "mcversion": "1.4.2",
   "url": "http://www.minecraftforum.net/topic/1422370-",
@@ -16,7 +16,6 @@
   ],
   "parent":"",
   "dependencies": [
-  	"required-after:WandaResource"
   ]
 }
 ]

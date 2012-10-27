@@ -1,4 +1,4 @@
-package jp.wanda.minecraft;
+package jp.wanda.minecraft.core;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.EnumToolMaterial;
