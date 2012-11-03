@@ -36,7 +36,7 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "WandaSteamCore", name = "Wanda Steam Core", version = "0.0.1", dependencies = "required-after:WandaResource")
+@Mod(modid = "WandaSteamCore", name = "Wanda Steam Core", version = "0.0.1", dependencies = "required-after:WandaCore")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_WandaSteamCore extends WandaModBase implements
 		WandaKeyListener {
@@ -99,14 +99,12 @@ public class mod_WandaSteamCore extends WandaModBase implements
 
 					}
 				});
-		int fuelID = config.get("Steam Fuel", "item", 6000)
+		int fuelID = config.getItem("SteamFuel", 6000).getInt();
+		int smallEngineID = config.getItem("SteamEngineSmall", 6001).getInt();
+		int fuelGeneratorID = config.getBlock("SteamFuelGenerator", 160)
 				.getInt();
-		int smallEngineID = config.get("Steam Engine small",
-				"item", 6001).getInt();
-		int fuelGeneratorID = config.get(
-				"Steam Fuel Generator", "block", 160).getInt();
-		int fuelEnergy = config.get("Steam Fuel Energy",
-				"general", 20 * 600).getInt();
+		int fuelEnergy = config.get("SteamFuelEnergy", "general", 20 * 600)
+				.getInt();
 		config.save();
 
 		WandaSteamFuel fuel = new WandaSteamFuel(fuelID);

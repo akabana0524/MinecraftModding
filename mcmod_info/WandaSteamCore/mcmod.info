@@ -1,0 +1,22 @@
+[
+{
+  "modid": "WandaSteamCore",
+  "name": "Wanda Steam Core",
+  "description": "This mod is Wanda Steampunk mod core.",
+  "version": "@VERSION@",
+  "mcversion": "1.4.2",
+  "url": "http://www.minecraftforum.net/topic/1422370-",
+  "updateUrl": "",
+  "authors": [
+    "akabana0524"
+  ],
+  "credits": "By akabana0524",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  	"required-after:WandaCore"
+  ]
+}
+]

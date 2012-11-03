@@ -81,20 +81,18 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 		if (event.getSide() == Side.CLIENT) {
 			WandaKeyRegistry.registerWandaKeyListener(WandaKey.TOGGLE, this);
 		}
-		Property propertyItemID = config.get("ItemID",
-				"general", 5000);
-		Property propertyEnableEffect = config.get(
-				"EnableEffect", "general", true);
-		Property propertyTarget = config.get("TargetBlockID",
-				"general", "");
-		Property propertyHorizontalRange = config.get(
-				"HorizontalRange", "general", 10);
-		Property propertyVerticalRange = config.get(
-				"VerticalRange", "general", 50);
-		Property propertyDamageRatio = config.get(
-				"DamageRatio", "general", "0.2");
-		Property propertyExhaustionRatio = config.get(
-				"ExhaustionRatio", "general", "0.03125");
+		Property propertyItemID = config.getItem("PowerAxe", 5000);
+		Property propertyEnableEffect = config.get("EnableEffect", "general",
+				true);
+		Property propertyTarget = config.get("TargetBlockID", "general", "");
+		Property propertyHorizontalRange = config.get("HorizontalRange",
+				"general", 10);
+		Property propertyVerticalRange = config.get("VerticalRange", "general",
+				50);
+		Property propertyDamageRatio = config.get("DamageRatio", "general",
+				"0.2");
+		Property propertyExhaustionRatio = config.get("ExhaustionRatio",
+				"general", "0.03125");
 
 		config.save();
 		damageRatio = Double.parseDouble(propertyDamageRatio.value);
@@ -173,8 +171,7 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 	}
 
 	private Property getEnable(String username) {
-		Property propertyEnable = config.get(username,
-				"Enable", true);
+		Property propertyEnable = config.get(username, "Enable", true);
 		return propertyEnable;
 	}
 

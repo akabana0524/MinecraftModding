@@ -11,6 +11,8 @@ import net.minecraft.src.World;
 
 public class Slingshot extends ItemBow {
 
+	private static final int[] animation = { 1, 2, 3 };
+
 	protected Slingshot(int par1) {
 		super(par1);
 		iconIndex = 0;
@@ -104,20 +106,16 @@ public class Slingshot extends ItemBow {
 	@Override
 	public int getIconIndex(ItemStack stack, int renderPass,
 			EntityPlayer player, ItemStack usingItem, int useRemaining) {
-		int var4 = stack.getMaxItemUseDuration() - player.getItemInUseCount();
-
-		if (var4 >= 18) {
-			return 3;
+		if (usingItem != null
+				&& usingItem.getItem().shiftedIndex == this.shiftedIndex) {
+			int k = usingItem.getMaxItemUseDuration() - useRemaining;
+			if (k >= 18)
+				return animation[2];
+			if (k > 13)
+				return animation[1];
+			if (k > 0)
+				return animation[0];
 		}
-
-		if (var4 > 13) {
-			return 2;
-		}
-
-		if (var4 > 0) {
-			return 1;
-		}
-		return super.getIconIndex(stack, renderPass, player, usingItem,
-				useRemaining);
+		return getIconIndex(stack);
 	}
 }

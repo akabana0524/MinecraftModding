@@ -28,14 +28,13 @@ public class mod_WandaSlingshot extends WandaModBase {
 		super.init(event);
 		FMLLog.info("Init WandaSlingshot");
 
-		Property propertyItemID = config.get("ItemID",
-				"general", 5040);
-		Property propertyEntityID = config.get(
-				"BulletEntityID", "general", 220);
+		Property propertyItemID = config.getItem("Slingshot", 5040);
+		Property propertyEntityID = config
+				.get("BulletEntityID", "general", 220);
 		config.save();
 
-		 EntityRegistry.registerModEntity(EntitySlingshotBullet.class,
-		 "entSlingshotBullet", 1, this, 250, 5, true);
+		EntityRegistry.registerModEntity(EntitySlingshotBullet.class,
+				"entSlingshotBullet", 1, this, 250, 5, true);
 		// EntityRegistry.registerGlobalEntityID(EntitySlingshotBullet.class,
 		// "entSlingshotBullet", propertyEntityID.getInt());
 		if (event.getSide() == Side.CLIENT) {

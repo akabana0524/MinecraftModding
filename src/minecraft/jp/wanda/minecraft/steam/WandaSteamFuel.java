@@ -50,13 +50,13 @@ public class WandaSteamFuel extends Item implements IFuelHandler {
 		}
 	}
 
-	public static void idlingFuelMachine(ItemStack itemStack) {
+	public static void subFuelMachine(ItemStack itemStack, int sub) {
 		switch (FUEL_TYPE) {
 		case DAMAGE: {
 			WandaSteamFuelMachine machine = (WandaSteamFuelMachine) itemStack
 					.getItem();
 			int current = itemStack.getItemDamage();
-			int fuel = Math.max(current - 1, 0);
+			int fuel = Math.max(current - sub, 0);
 			itemStack.setItemDamage(fuel);
 		}
 			break;
@@ -68,7 +68,7 @@ public class WandaSteamFuel extends Item implements IFuelHandler {
 			WandaSteamFuelMachine machine = (WandaSteamFuelMachine) itemStack
 					.getItem();
 			int current = tag.getInteger("Fuel");
-			int fuel = Math.max(current - 1, 0);
+			int fuel = Math.max(current - sub, 0);
 			tag.setInteger("Fuel", fuel);
 		}
 			break;
@@ -76,11 +76,15 @@ public class WandaSteamFuel extends Item implements IFuelHandler {
 			WandaSteamFuelMachine machine = (WandaSteamFuelMachine) itemStack
 					.getItem();
 			int current = itemStack.stackSize;
-			int fuel = Math.max(current - 1, 1);
+			int fuel = Math.max(current - sub, 1);
 			itemStack.stackSize = fuel;
 		}
 			break;
 		}
+	}
+
+	public static void idlingFuelMachine(ItemStack itemStack) {
+		subFuelMachine(itemStack, 1);
 	}
 
 	public static int getFuel(ItemStack itemStack) {

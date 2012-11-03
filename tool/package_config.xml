@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<mod name="WandaCore_Forge6.0.1" version="0.5.0">
+	<mod name="WandaCore_Forge6.0.1" version="0.5.1">
 		<file from="mcmod_info\WandaCore\mcmod.info" to=""/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\core\BlockSide$1.class" to="jp\wanda\minecraft\core"/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\core\BlockSide.class" to="jp\wanda\minecraft\core"/>
@@ -89,5 +89,31 @@
 		<file from="reobf\minecraft\jp\wanda\minecraft\bouyomi\mod_WandaBouyomi$EventHook.class" to="jp\wanda\minecraft\bouyomi"/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\bouyomi\mod_WandaBouyomi.class" to="jp\wanda\minecraft\bouyomi"/>
 		<file from="reobf\minecraft\jp\snowink\bouyomichan\BouyomiChan4J.class" to="jp\snowink\bouyomichan"/>
+	</mod>
+	
+	<mod name="WandaSteamCore_Forge6.0.1" version="0.0.1">
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\WandaSteamFuelGenerator$GeneratorTileEntity.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\WandaSteamFuelGenerator$GuiFuelGenerator.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\WandaSteamFuelGenerator.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\WandaSteamFuelMachine.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\WandaSteamSmallEngine.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\mod_WandaSteamCore$1.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\mod_WandaSteamCore$2.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\mod_WandaSteamCore.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\WandaSteamFuel$1.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\WandaSteamFuel$FuelType.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\WandaSteamFuel.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\WandaSteamFuelGenerator$GeneratorContainer.class" to="jp\wanda\minecraft\steam"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\WandaSteamFuelGenerator$GeneratorGUI.class" to="jp\wanda\minecraft\steam"/>
+		<file from="src\minecraft\jp\wanda\minecraft\steam\GuiWandaSteamFuelGenerator.png" to="jp\wanda\minecraft\steam"/>
+		<file from="src\minecraft\jp\wanda\minecraft\steam\WandaSteamCore.png" to="jp\wanda\minecraft\steam"/>
+	</mod>
+	<mod name="WandaSteamDrill_Forge6.0.1" version="0.0.1">
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\mod_WandaSteamDrill$EventHook.class" to="jp\wanda\minecraft\steam\drill"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\mod_WandaSteamDrill$NetworkHandler.class" to="jp\wanda\minecraft\steam\drill"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\mod_WandaSteamDrill.class" to="jp\wanda\minecraft\steam\drill"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\WandaSteamDrill.class" to="jp\wanda\minecraft\steam\drill"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\WandaSteamMachineRenderer$1.class" to="jp\wanda\minecraft\steam\drill"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\WandaSteamMachineRenderer.class" to="jp\wanda\minecraft\steam\drill"/>
 	</mod>
 </root>

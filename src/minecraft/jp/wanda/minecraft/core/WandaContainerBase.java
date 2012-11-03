@@ -3,12 +3,8 @@ package jp.wanda.minecraft.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.wanda.minecraft.steam.WandaSteamFuelGenerator.GeneratorTileEntity;
-
-import net.minecraft.src.Block;
 import net.minecraft.src.Container;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IInventory;
 import net.minecraft.src.InventoryPlayer;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Slot;
@@ -42,17 +38,17 @@ public abstract class WandaContainerBase extends Container {
 		this.y = y;
 		this.z = z;
 
+		for (int slotIndex = 0; slotIndex < 9; ++slotIndex) {
+			addSlotToContainer(new Slot(playerInventory, slotIndex,
+					playerInventoryX + slotIndex * 18, playerInventoryY + 58));
+		}
+
 		for (int rows = 0; rows < 3; ++rows) {
 			for (int slotIndex = 0; slotIndex < 9; ++slotIndex) {
 				addSlotToContainer(new Slot(playerInventory, slotIndex + rows
 						* 9 + 9, playerInventoryX + slotIndex * 18,
 						playerInventoryY + rows * 18));
 			}
-		}
-
-		for (int slotIndex = 0; slotIndex < 9; ++slotIndex) {
-			addSlotToContainer(new Slot(playerInventory, slotIndex,
-					playerInventoryX + slotIndex * 18, playerInventoryY + 58));
 		}
 		extraInventoryList = new ArrayList<WandaInventoryGroup>();
 		int inventoryIndex = 36;
@@ -118,5 +114,37 @@ public abstract class WandaContainerBase extends Container {
 			}
 		}
 		extraInventoryList.add(extraInventory);
+	}
+
+	@Override
+	public ItemStack func_82846_b(EntityPlayer par1EntityPlayer, int slotIndex) {
+		int inventorySize = inventorySlots.size();
+		ItemStack var2 = null;
+		Slot var3 = (Slot) this.inventorySlots.get(slotIndex);
+
+		if (var3 != null && var3.getHasStack()) {
+			ItemStack var4 = var3.getStack();
+			var2 = var4.copy();
+			if (slotIndex < 35) {
+				if (!this.mergeItemStack(var4, 36, inventorySize - 1, true)) {
+					return null;
+				}
+			} else if (!this.mergeItemStack(var4, 0, 35, false)) {
+				return null;
+			}
+			if (var4.stackSize == 0) {
+				var3.putStack((ItemStack) null);
+			} else {
+				var3.onSlotChanged();
+			}
+
+			if (var4.stackSize == var2.stackSize) {
+				return null;
+			}
+
+			var3.func_82870_a(par1EntityPlayer, var4);
+		}
+
+		return var2;
 	}
 }
