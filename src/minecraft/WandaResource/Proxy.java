@@ -1,7 +1,7 @@
 package WandaResource;
 
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.World;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class Proxy implements IGuiHandler {

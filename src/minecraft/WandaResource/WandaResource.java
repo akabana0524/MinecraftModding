@@ -3,14 +3,14 @@ package WandaResource;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.wanda.minecraft.core.WandaTileEntityBase;
-import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry;
-import jp.wanda.minecraft.core.packet.WandaPacketHandlerRegistry.WandaPacektHandler;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.NetworkManager;
-import net.minecraft.src.Packet250CustomPayload;
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.World;
+import mods.WandaCore.WandaTileEntityBase;
+import mods.WandaCore.packet.WandaPacketHandlerRegistry;
+import mods.WandaCore.packet.WandaPacketHandlerRegistry.WandaPacektHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet250CustomPayload;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
@@ -37,7 +37,7 @@ public class WandaResource {
 
 					@Override
 					public void onPacketData(String subChannel, byte[] data,
-							NetworkManager manager,
+							INetworkManager manager,
 							Packet250CustomPayload origin, Player player) {
 						ByteArrayDataInput din = ByteStreams
 								.newDataInput(data);

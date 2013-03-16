@@ -8,18 +8,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import net.minecraft.src.KeyBinding;
+import net.minecraft.client.settings.KeyBinding;
 
 import org.lwjgl.input.Keyboard;
 
-import WandaResource.WandaKeyRegistry.WandaKeyListener;
-
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.asm.SideOnly;
-import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class WandaKeyRegistry {
