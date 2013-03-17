@@ -15,7 +15,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "WandaCrowbar", name = "Wanda Crowbar", version = "0.3.0", dependencies = "required-after:WandaResource")
+@Mod(modid = "WandaCrowbar", name = "Wanda Crowbar", version = "0.3.0", dependencies = "required-after:WandaCore")
 public class mod_WandaCrowbar extends WandaModBase {
 
 	private static final Block[] blocksEffectiveAgainst;

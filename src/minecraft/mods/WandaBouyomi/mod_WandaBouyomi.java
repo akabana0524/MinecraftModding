@@ -43,7 +43,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.Player;
 
-@Mod(modid = "WandaBouyomi", name = "Wanda Bouyomi", version = "0.0.1", dependencies = "required-after:WandaResource")
+@Mod(modid = "WandaBouyomi", name = "Wanda Bouyomi", version = "0.0.1", dependencies = "required-after:WandaCore")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { "hoge" }, connectionHandler = mod_WandaBouyomi.class, packetHandler = mod_WandaBouyomi.class)
 public class mod_WandaBouyomi extends WandaModBase implements IChatListener,
 		IConnectionHandler, IPacketHandler {

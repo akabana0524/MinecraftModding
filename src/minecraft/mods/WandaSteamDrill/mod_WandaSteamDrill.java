@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.EnumSet;
 
 import mods.WandaCore.MaterialTable;
+import mods.WandaCore.WandaKeyRegistry.WandaKey;
+import mods.WandaCore.WandaKeyRegistry.WandaKeyListener;
 import mods.WandaCore.WandaModBase;
 import mods.WandaCore.packet.WandaPacketHandlerRegistry;
 import mods.WandaCore.packet.WandaPacketHandlerRegistry.WandaPacektHandler;
@@ -22,8 +24,6 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
-import WandaResource.WandaKeyRegistry.WandaKey;
-import WandaResource.WandaKeyRegistry.WandaKeyListener;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;

@@ -2,6 +2,9 @@ package mods.WandaSteamCore;
 
 import java.util.EnumSet;
 
+import mods.WandaCore.WandaKeyRegistry;
+import mods.WandaCore.WandaKeyRegistry.WandaKey;
+import mods.WandaCore.WandaKeyRegistry.WandaKeyListener;
 import mods.WandaCore.WandaModBase;
 import mods.WandaCore.packet.WandaPacketHandlerRegistry;
 import mods.WandaCore.packet.WandaPacketHandlerRegistry.WandaPacektHandler;
@@ -15,13 +18,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
-import net.minecraftforge.client.MinecraftForgeClient;
 
 import org.lwjgl.input.Keyboard;
 
-import WandaResource.WandaKeyRegistry;
-import WandaResource.WandaKeyRegistry.WandaKey;
-import WandaResource.WandaKeyRegistry.WandaKeyListener;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -36,7 +35,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = "WandaSteamCore", name = "Wanda Steam Core", version = "0.0.1", dependencies = "required-after:WandaResource")
+@Mod(modid = "WandaSteamCore", name = "Wanda Steam Core", version = "0.0.1", dependencies = "required-after:WandaCore")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_WandaSteamCore extends WandaModBase implements
 		WandaKeyListener {

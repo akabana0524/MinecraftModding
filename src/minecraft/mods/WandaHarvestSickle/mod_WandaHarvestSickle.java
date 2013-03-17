@@ -16,7 +16,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "WandaHarvestSickle", name = "Wanda Harvest Sickle", version = "0.3.0", dependencies = "required-after:WandaResource")
+@Mod(modid = "WandaHarvestSickle", name = "Wanda Harvest Sickle", version = "0.3.0", dependencies = "required-after:WandaCore")
 public class mod_WandaHarvestSickle extends WandaModBase {
 
 	private HashMap<EnumToolMaterial, HarvestSickle> list;

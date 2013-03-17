@@ -16,7 +16,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = "WandaSlingshot", name = "Wanda Slingshot", version = "0.3.0", dependencies = "required-after:WandaResource")
+@Mod(modid = "WandaSlingshot", name = "Wanda Slingshot", version = "0.3.0", dependencies = "required-after:WandaCore")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_WandaSlingshot extends WandaModBase {
 	public static ItemSlingshot item;
