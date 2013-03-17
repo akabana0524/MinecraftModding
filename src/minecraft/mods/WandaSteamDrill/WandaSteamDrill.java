@@ -127,16 +127,6 @@ public class WandaSteamDrill extends ItemPickaxe implements
 				WandaSteamFuel.subFuelMachine(itemStack, 2);
 			}
 		} else {
-			// if (WandaSteamFuel.getFuel(itemStack) > 0) {
-			// if (entity instanceof EntityPlayer) {
-			// EntityPlayer new_name = (EntityPlayer) entity;
-			// if (new_name.getCurrentEquippedItem() == itemStack) {
-			// if (world.rand.nextInt(3) == 0) {
-			// hoge((EntityPlayer) entity, itemStack, world);
-			// }
-			// }
-			// }
-			// }
 		}
 		super.onUpdate(itemStack, world, entity, par4, par5);
 	}

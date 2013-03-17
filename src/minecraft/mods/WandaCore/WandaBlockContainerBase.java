@@ -53,8 +53,8 @@ abstract public class WandaBlockContainerBase extends BlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z,
-			EntityLiving entityliving, ItemStack par6ItemStack) {
-		super.onBlockPlacedBy(world, x, y, z, entityliving, par6ItemStack);
+			EntityLiving entityliving, ItemStack itemStack) {
+		super.onBlockPlacedBy(world, x, y, z, entityliving, itemStack);
 		if (enableFacing) {
 			getFacing(world, x, y, z).onBlockPlacedBy(world, x, y, z,
 					entityliving);
@@ -127,9 +127,8 @@ abstract public class WandaBlockContainerBase extends BlockContainer {
 									.nextGaussian() * var15);
 
 							if (var9.hasTagCompound()) {
-								var14.getEntityItem().setTagCompound(
-										(NBTTagCompound) var9.getTagCompound()
-												.copy());
+								var9.setTagCompound((NBTTagCompound) var9
+										.getTagCompound().copy());
 							}
 						}
 					}

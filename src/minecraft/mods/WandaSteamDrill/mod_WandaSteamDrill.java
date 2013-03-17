@@ -162,7 +162,7 @@ public class mod_WandaSteamDrill extends WandaModBase implements
 				" X ", "XXX", " Y ", 'X', MaterialTable.getMaterial(material),
 				'Y', Item.itemsList[WandaSteamSmallEngine.grobalItemID] });
 		if (event.getSide() == Side.CLIENT) {
-			MinecraftForgeClient.registerItemRenderer(itemID + 256,
+			MinecraftForgeClient.registerItemRenderer(drill.itemID,
 					new WandaSteamMachineRenderer(Minecraft.getMinecraft()));
 		}
 	}

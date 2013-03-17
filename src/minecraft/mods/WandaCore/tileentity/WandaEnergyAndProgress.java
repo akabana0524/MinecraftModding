@@ -8,7 +8,6 @@ import java.io.IOException;
 
 import mods.WandaCore.WandaTileEntityData;
 
-
 public class WandaEnergyAndProgress implements WandaTileEntityData {
 
 	private int energy;

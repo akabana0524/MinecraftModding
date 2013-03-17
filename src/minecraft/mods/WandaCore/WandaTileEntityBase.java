@@ -59,10 +59,10 @@ abstract public class WandaTileEntityBase extends TileEntity {
 
 	abstract public String getChannel();
 
-	// @Override
-	// public Packet getAuxillaryInfoPacket() {
-	// return getPacket(this);
-	// }
+	@Override
+	public Packet getDescriptionPacket() {
+		return getPacket(this);
+	}
 
 	public static Packet getPacket(WandaTileEntityBase entity) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();

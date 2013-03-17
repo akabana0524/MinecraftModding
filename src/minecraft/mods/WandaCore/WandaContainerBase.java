@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 public abstract class WandaContainerBase extends Container {
 
 	public static final int SLOT_SIZE = 18;
+	private World worldObj;
 	protected EntityPlayer player;
 	protected InventoryPlayer playerInventory;
 	protected World world;
@@ -24,6 +25,12 @@ public abstract class WandaContainerBase extends Container {
 
 	public WandaContainerBase(EntityPlayer player, World world, int x, int y,
 			int z) {
+		this(player, world, x, y, z, 8, 84);
+	}
+
+	public WandaContainerBase(EntityPlayer player, World world, int x, int y,
+			int z, int playerInventoryX, int playerInventoryY) {
+		this.worldObj = world;
 		this.player = player;
 		this.playerInventory = player.inventory;
 		this.world = world;
@@ -33,23 +40,24 @@ public abstract class WandaContainerBase extends Container {
 
 		for (int slotIndex = 0; slotIndex < 9; ++slotIndex) {
 			addSlotToContainer(new Slot(playerInventory, slotIndex,
-					8 + slotIndex * 18, 142));
+					playerInventoryX + slotIndex * 18, playerInventoryY + 58));
 		}
+
 		for (int rows = 0; rows < 3; ++rows) {
 			for (int slotIndex = 0; slotIndex < 9; ++slotIndex) {
 				addSlotToContainer(new Slot(playerInventory, slotIndex + rows
-						* 9 + 9, 8 + slotIndex * 18, 84 + rows * 18));
+						* 9 + 9, playerInventoryX + slotIndex * 18,
+						playerInventoryY + rows * 18));
 			}
 		}
-
 		extraInventoryList = new ArrayList<WandaInventoryGroup>();
+		int inventoryIndex = 36;
 		setupExtraInventory();
 		if (hasTileEntity()) {
 			TileEntity entity = world.getBlockTileEntity(x, y, z);
 			if (entity != null) {
 				if (entity instanceof WandaTileEntityBase) {
 					WandaTileEntityBase wandaTileEntity = (WandaTileEntityBase) entity;
-					int inventoryIndex = 36;
 					for (int i = 0; i < wandaTileEntity.getDataCount(); i++) {
 						WandaTileEntityData data = wandaTileEntity.getData(i);
 						if (data instanceof WandaInventoryGroup) {
@@ -106,5 +114,38 @@ public abstract class WandaContainerBase extends Container {
 			}
 		}
 		extraInventoryList.add(extraInventory);
+	}
+
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer,
+			int slotIndex) {
+		int inventorySize = inventorySlots.size();
+		ItemStack var2 = null;
+		Slot var3 = (Slot) this.inventorySlots.get(slotIndex);
+
+		if (var3 != null && var3.getHasStack()) {
+			ItemStack var4 = var3.getStack();
+			var2 = var4.copy();
+			if (slotIndex < 35) {
+				if (!this.mergeItemStack(var4, 36, inventorySize - 1, true)) {
+					return null;
+				}
+			} else if (!this.mergeItemStack(var4, 0, 35, false)) {
+				return null;
+			}
+			if (var4.stackSize == 0) {
+				var3.putStack((ItemStack) null);
+			} else {
+				var3.onSlotChanged();
+			}
+
+			if (var4.stackSize == var2.stackSize) {
+				return null;
+			}
+
+			var3.onPickupFromSlot(par1EntityPlayer, var4);
+		}
+
+		return var2;
 	}
 }
