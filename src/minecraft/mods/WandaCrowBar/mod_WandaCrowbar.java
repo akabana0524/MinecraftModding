@@ -80,10 +80,10 @@ public class mod_WandaCrowbar extends WandaModBase {
 				Block.stairsWoodBirch,// 松製階段
 				Block.stairsWoodSpruce,// 白樺製階段
 				Block.stairsWoodJungle,// ジャングルの木製階段
-				Block.stairCompactCobblestone,// 丸石製階段
-				Block.stairCompactPlanks,// オーク製階段
+				Block.stairsWoodOak,// オーク製階段
+				Block.stairsCobblestone,// 丸石製階段
 				Block.stairsBrick,// レンガ製階段
-				Block.stairsStoneBrickSmooth,// 石製階段
+				Block.stairsStoneBrick,// 石製階段
 				Block.blockDiamond,// ダイヤブロック
 				Block.blockEmerald,// エメラルドブロック
 				Block.blockGold,// 金ブロック

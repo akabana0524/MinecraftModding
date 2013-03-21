@@ -297,12 +297,17 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void func_94332_a(IconRegister par1IconRegister) {
+
+	/**
+	 * When this method is called, your block should register all the icons it needs with the given IconRegister. This is
+	 * the only chance you get to register icons.
+	 */
+	public void registerIcons(IconRegister par1IconRegister) {
 		icons = new Icon[6];
 		for (int i = 0; i < icons.length; i++) {
 			icons[i] = par1IconRegister
-					.func_94245_a("WandaSteamCore:SteamFuelGenerator0" + i);
+					.registerIcon("WandaSteamCore:SteamFuelGenerator0" + i);
 		}
-		this.field_94336_cN = icons[0];
+		this.blockIcon = icons[0];
 	}
 }

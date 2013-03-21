@@ -46,7 +46,7 @@ public class Crowbar extends ItemTool {
 				world.playAuxSFX(2001, x, y, z,
 						block.blockID + (world.getBlockMetadata(x, y, z) << 12));
 				block.harvestBlock(world, player, x, y, z, metaData);
-				world.setBlockAndMetadataWithNotify(x, y, z, 0, 0, 3);
+				world.setBlock(x, y, z, 0, 0, 3);
 			}
 		}
 
@@ -61,7 +61,7 @@ public class Crowbar extends ItemTool {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94581_a(IconRegister par1IconRegister) {
+	public void updateIcons(IconRegister par1IconRegister) {
 		String path = null;
 		switch (toolMaterial) {
 		case IRON:
@@ -77,6 +77,6 @@ public class Crowbar extends ItemTool {
 			path = "WandaCrowBar:CrowBar00";
 			break;
 		}
-		iconIndex = par1IconRegister.func_94245_a(path);
+		iconIndex = par1IconRegister.registerIcon(path);
 	}
 }

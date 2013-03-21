@@ -38,18 +38,23 @@ public class ArrowTargetBlock extends Block {
 			EntityArrow arrow = (EntityArrow) entity;
 			world.playAuxSFX(2001, x, y, z,
 					blockID + (world.getBlockMetadata(x, y, z) << 12));
-			world.setBlockAndMetadataWithNotify(x, y, z, 0, 0, 3);
+			world.setBlock(x, y, z, 0, 0, 3);
 			entity.setDead();
 		}
 		super.onEntityCollidedWithBlock(world, x, y, z, entity);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void func_94332_a(IconRegister par1IconRegister) {
-		this.field_94336_cN = par1IconRegister
-				.func_94245_a("WandaArrowTarget:ArrowTarget00");
+
+	/**
+	 * When this method is called, your block should register all the icons it needs with the given IconRegister. This is
+	 * the only chance you get to register icons.
+	 */
+	public void registerIcons(IconRegister par1IconRegister) {
+		this.blockIcon = par1IconRegister
+				.registerIcon("WandaArrowTarget:ArrowTarget00");
 		this.iconTop = par1IconRegister
-				.func_94245_a("WandaArrowTarget:ArrowTarget01");
+				.registerIcon("WandaArrowTarget:ArrowTarget01");
 	}
 
 }

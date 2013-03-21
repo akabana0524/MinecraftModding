@@ -120,7 +120,7 @@ public class mod_WandaSteamDrill extends WandaModBase implements
 		}
 		world.playAuxSFX(2001, x, y, z, blockID + (metaData << 12));
 		block.harvestBlock(world, player, x, y, z, metaData);
-		world.setBlockAndMetadataWithNotify(x, y, z, 0, 0, 3);
+		world.setBlock(x, y, z, 0, 0, 3);
 	}
 
 	@Override

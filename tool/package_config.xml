@@ -98,7 +98,7 @@
 		<file from="src\minecraft\mods\WandaArrowTarget\textures\blocks\ArrowTarget01.png" to="mods\WandaArrowTarget\textures\blocks" />
 	</mod>
 	
-	<mod name="WandaBouyomi_Forge4.1.1" version="0.5.0">
+	<mod name="WandaBouyomi_Forge7.7.0" version="0.5.0">
 		<file from="mcmod_info\WandaBouyomi\mcmod.info" to=""/>
 		<file from="reobf\minecraft\jp\snowink\bouyomichan\BouyomiChan4J.class" to="jp\snowink\bouyomichan" />
 		<file from="reobf\minecraft\mods\WandaBouyomi\mod_WandaBouyomi$EventHook.class" to="mods\WandaBouyomi" />

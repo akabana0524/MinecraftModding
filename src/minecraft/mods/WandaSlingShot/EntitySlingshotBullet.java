@@ -272,7 +272,7 @@ public class EntitySlingshotBullet extends Entity {
 					int var24 = MathHelper.ceiling_double_int((double) var20
 							* this.damage);
 
-					if (this.func_70241_g()) {
+					if (this.getIsCritical()) {
 						var24 += this.rand.nextInt(var24 / 2 + 2);
 					}
 
@@ -361,12 +361,12 @@ public class EntitySlingshotBullet extends Entity {
 								this.zTile);
 					}
 					this.inGround = true;
-					this.func_70243_d(false);
+					this.setIsCritical(false);
 					this.setDead();
 				}
 			}
 
-			if (this.func_70241_g()) {
+			if (this.getIsCritical()) {
 				for (int var21 = 0; var21 < 4; ++var21) {
 					this.worldObj.spawnParticle("crit", this.posX
 							+ this.motionX * (double) var21 / 4.0D, this.posY
@@ -544,7 +544,10 @@ public class EntitySlingshotBullet extends Entity {
 		return false;
 	}
 
-	public void func_70243_d(boolean par1) {
+	/**
+	 * Whether the arrow has a stream of critical hit particles flying behind it.
+	 */
+	public void setIsCritical(boolean par1) {
 		byte var2 = this.dataWatcher.getWatchableObjectByte(16);
 
 		if (par1) {
@@ -554,7 +557,10 @@ public class EntitySlingshotBullet extends Entity {
 		}
 	}
 
-	public boolean func_70241_g() {
+	/**
+	 * Whether the arrow has a stream of critical hit particles flying behind it.
+	 */
+	public boolean getIsCritical() {
 		byte var1 = this.dataWatcher.getWatchableObjectByte(16);
 		return (var1 & 1) != 0;
 	}

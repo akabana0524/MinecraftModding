@@ -75,7 +75,7 @@ public class PowerAxe extends ItemAxe {
 						}
 						block.harvestBlock(world, player, currentX, currentY,
 								currentZ, metaData);
-						world.setBlockAndMetadataWithNotify(currentX, currentY,
+						world.setBlock(currentX, currentY,
 								currentZ, 0, 0, 3);
 						ret++;
 
@@ -135,7 +135,7 @@ public class PowerAxe extends ItemAxe {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94581_a(IconRegister par1IconRegister) {
+	public void updateIcons(IconRegister par1IconRegister) {
 		String path = null;
 		switch (toolMaterial) {
 		case WOOD:
@@ -157,6 +157,6 @@ public class PowerAxe extends ItemAxe {
 			path = "WandaPowerAxe:PowerAxe00";
 			break;
 		}
-		iconIndex = par1IconRegister.func_94245_a(path);
+		iconIndex = par1IconRegister.registerIcon(path);
 	}
 }

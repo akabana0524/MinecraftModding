@@ -196,7 +196,7 @@ public class WandaSteamDrill extends ItemPickaxe implements
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94581_a(IconRegister par1IconRegister) {
+	public void updateIcons(IconRegister par1IconRegister) {
 		String path = null;
 		switch (toolMaterial) {
 		case IRON:
@@ -209,6 +209,6 @@ public class WandaSteamDrill extends ItemPickaxe implements
 			path = "WandaSteamDrill:SteamDrill00";
 			break;
 		}
-		iconIndex = par1IconRegister.func_94245_a(path);
+		iconIndex = par1IconRegister.registerIcon(path);
 	}
 }

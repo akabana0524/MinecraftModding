@@ -21,8 +21,8 @@ public class WandaSteamSmallEngine extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94581_a(IconRegister par1IconRegister) {
+	public void updateIcons(IconRegister par1IconRegister) {
 		iconIndex = par1IconRegister
-				.func_94245_a("WandaSteamCore:SteamEngineSmall");
+				.registerIcon("WandaSteamCore:SteamEngineSmall");
 	}
 }

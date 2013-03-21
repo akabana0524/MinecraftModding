@@ -73,7 +73,7 @@ public class HarvestSickle extends ItemTool {
 	}
 
 	// @Override
-	// public boolean func_77660_a(ItemStack itemStack, World world, int
+	// public boolean onBlockDestroyed(ItemStack itemStack, World world, int
 	// blockID,
 	// int x, int y, int z, EntityLiving entityLiving) {
 	// if (!world.isRemote) {
@@ -89,7 +89,7 @@ public class HarvestSickle extends ItemTool {
 	// }
 	// }
 	//
-	// return super.func_77660_a(itemStack, world, blockID, x, y, z,
+	// return super.onBlockDestroyed(itemStack, world, blockID, x, y, z,
 	// entityLiving);
 	// }
 
@@ -123,7 +123,7 @@ public class HarvestSickle extends ItemTool {
 
 					block.harvestBlock(world, player, currentX, y, currentZ,
 							metaData);
-					world.setBlockAndMetadataWithNotify(currentX, y, currentZ, 0, 0, 3);
+					world.setBlock(currentX, y, currentZ, 0, 0, 3);
 				}
 			}
 		}
@@ -154,7 +154,7 @@ public class HarvestSickle extends ItemTool {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94581_a(IconRegister par1IconRegister) {
+	public void updateIcons(IconRegister par1IconRegister) {
 		String path = null;
 		switch (toolMaterial) {
 		case IRON:
@@ -170,6 +170,6 @@ public class HarvestSickle extends ItemTool {
 			path = "WandaHarvestSickle:HarvestSickle00";
 			break;
 		}
-		iconIndex = par1IconRegister.func_94245_a(path);
+		iconIndex = par1IconRegister.registerIcon(path);
 	}
 }

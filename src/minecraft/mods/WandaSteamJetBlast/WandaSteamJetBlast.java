@@ -85,11 +85,11 @@ public class WandaSteamJetBlast extends ItemBow {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void func_94581_a(IconRegister par1IconRegister) {
-		iconIndex = par1IconRegister.func_94245_a(ICON_PATH[0]);
+	public void updateIcons(IconRegister par1IconRegister) {
+		iconIndex = par1IconRegister.registerIcon(ICON_PATH[0]);
 		icons = new Icon[ICON_PATH.length];
 		for (int i = 0; i < this.icons.length; ++i) {
-			icons[i] = par1IconRegister.func_94245_a(ICON_PATH[i]);
+			icons[i] = par1IconRegister.registerIcon(ICON_PATH[i]);
 		}
 	}
 

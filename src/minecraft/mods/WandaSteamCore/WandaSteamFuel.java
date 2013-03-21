@@ -123,7 +123,7 @@ public class WandaSteamFuel extends Item implements IFuelHandler {
 	}
 
 	@Override
-	public void func_94581_a(IconRegister par1IconRegister) {
-		iconIndex = par1IconRegister.func_94245_a("WandaSteamCore:SteamFuel");
+	public void updateIcons(IconRegister par1IconRegister) {
+		iconIndex = par1IconRegister.registerIcon("WandaSteamCore:SteamFuel");
 	}
 }
