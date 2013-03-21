@@ -1,86 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<mod name="WandaResource_Forge4.0.0" version="0.3.0">
-		<file from="mcmod_info\WandaResource\mcmod.info" to=""/>
-		<file from="reobf\minecraft\WandaResource\Client.class" to="WandaResource"/>
-		<file from="reobf\minecraft\WandaResource\Proxy.class" to="WandaResource"/>
-		<file from="reobf\minecraft\WandaResource\Server.class" to="WandaResource"/>
-		<file from="reobf\minecraft\WandaResource\WandaResource.class" to="WandaResource"/>
-		<file from="reobf\minecraft\WandaResource\WandaKeyHandler.class" to="WandaResource"/>
-		<file from="reobf\minecraft\WandaResource\WandaKeyHandler$1.class" to="WandaResource"/>
-		<file from="reobf\minecraft\WandaResource\WandaKeyHandler$WandaKey.class" to="WandaResource"/>
-		<file from="reobf\minecraft\WandaResource\WandaKeyHandler$WandaKeyListener.class" to="WandaResource"/>
-
-		<file from="src\minecraft\WandaResource\WandaTools.png" to="WandaResource"/>
-		<file from="src\minecraft\WandaResource\WandaBlocks.png" to="WandaResource"/>
-		<file from="src\minecraft\WandaResource\WandaItems.png" to="WandaResource"/>
+	<mod name="WandaCore_Forge7.7.0" version="0.5.0">
+		<file from="mcmod_info\WandaCore\mcmod.info" to=""/>
+		<file from="reobf\minecraft\mods\WandaCore\packet\WandaPacketHandlerRegistry$WandaPacektHandler.class" to="mods\WandaCore\packet" />
+		<file from="reobf\minecraft\mods\WandaCore\packet\WandaPacketHandlerRegistry.class" to="mods\WandaCore\packet" />
+		<file from="reobf\minecraft\mods\WandaCore\tileentity\WandaEnergyAndProgress.class" to="mods\WandaCore\tileentity" />
+		<file from="reobf\minecraft\mods\WandaCore\tileentity\WandaFacing6Face$1.class" to="mods\WandaCore\tileentity" />
+		<file from="reobf\minecraft\mods\WandaCore\tileentity\WandaFacing6Face.class" to="mods\WandaCore\tileentity" />
+		<file from="reobf\minecraft\mods\WandaCore\tileentity\WandaFacingData.class" to="mods\WandaCore\tileentity" />
+		<file from="reobf\minecraft\mods\WandaCore\BlockSide$1.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\BlockSide.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\MaterialTable$1.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\MaterialTable.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\mod_WandaCore.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaBlockContainerBase.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaContainerBase$1.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaContainerBase.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaGuiContainerBase.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaInventoryGroup.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaKeyRegistry$WandaKey$1.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaKeyRegistry$WandaKey.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaKeyRegistry$WandaKeyListener.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaKeyRegistry$Wrap.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaKeyRegistry.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaModBase.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaReflectionHelper.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaTileEntityBase.class" to="mods\WandaCore" />
+		<file from="reobf\minecraft\mods\WandaCore\WandaTileEntityData.class" to="mods\WandaCore" />
 	</mod>
 	
-	<mod name="WandaPowerAxe_Forge4.0.0" version="0.4.0">
+	<mod name="WandaPowerAxe_Forge7.7.0" version="0.5.0">
 		<file from="mcmod_info\WandaPoweraxe\mcmod.info" to=""/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\WandaModBase.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\MaterialTable.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\MaterialTable$1.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\poweraxe\mod_WandaPowerAxe$1.class" to="jp\wanda\minecraft\poweraxe"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\poweraxe\mod_WandaPowerAxe$NetworkHandler.class" to="jp\wanda\minecraft\poweraxe"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\poweraxe\mod_WandaPowerAxe.class" to="jp\wanda\minecraft\poweraxe"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\poweraxe\PowerAxe.class" to="jp\wanda\minecraft\poweraxe"/>
-
+		<file from="reobf\minecraft\mods\WandaPowerAxe\mod_WandaPowerAxe$1.class" to="mods\WandaPowerAxe" />
+		<file from="reobf\minecraft\mods\WandaPowerAxe\mod_WandaPowerAxe$NetworkHandler.class" to="mods\WandaPowerAxe" />
+		<file from="reobf\minecraft\mods\WandaPowerAxe\mod_WandaPowerAxe.class" to="mods\WandaPowerAxe" />
+		<file from="reobf\minecraft\mods\WandaPowerAxe\PowerAxe$1.class" to="mods\WandaPowerAxe" />
+		<file from="reobf\minecraft\mods\WandaPowerAxe\PowerAxe.class" to="mods\WandaPowerAxe" />
+		<file from="src\minecraft\mods\WandaPowerAxe\textures\items\PowerAxe00.png" to="mods\WandaPowerAxe\textures\items" />
+		<file from="src\minecraft\mods\WandaPowerAxe\textures\items\PowerAxe01.png" to="mods\WandaPowerAxe\textures\items" />
+		<file from="src\minecraft\mods\WandaPowerAxe\textures\items\PowerAxe02.png" to="mods\WandaPowerAxe\textures\items" />
+		<file from="src\minecraft\mods\WandaPowerAxe\textures\items\PowerAxe03.png" to="mods\WandaPowerAxe\textures\items" />
+		<file from="src\minecraft\mods\WandaPowerAxe\textures\items\PowerAxe04.png" to="mods\WandaPowerAxe\textures\items" />
 	</mod>
 	
-	<mod name="WandaPowerPickaxe_Forge4.0.0" version="0.4.0">
+	<mod name="WandaPowerPickaxe_Forge7.7.0" version="0.5.0">
 		<file from="mcmod_info\WandaPowerPickaxe\mcmod.info" to=""/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\WandaModBase.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\MaterialTable.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\MaterialTable$1.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\powerpickaxe\mod_WandaPowerPickaxe$1.class" to="jp\wanda\minecraft\powerpickaxe"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\powerpickaxe\mod_WandaPowerPickaxe$NetworkHandler.class" to="jp\wanda\minecraft\powerpickaxe"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\powerpickaxe\mod_WandaPowerPickaxe.class" to="jp\wanda\minecraft\powerpickaxe"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\powerpickaxe\PowerPickaxe.class" to="jp\wanda\minecraft\powerpickaxe"/>
-
+		<file from="reobf\minecraft\mods\WandaPowerPickAxe\mod_WandaPowerPickaxe$1.class" to="mods\WandaPowerPickAxe" />
+		<file from="reobf\minecraft\mods\WandaPowerPickAxe\mod_WandaPowerPickaxe$NetworkHandler.class" to="mods\WandaPowerPickAxe" />
+		<file from="reobf\minecraft\mods\WandaPowerPickAxe\mod_WandaPowerPickaxe.class" to="mods\WandaPowerPickAxe" />
+		<file from="reobf\minecraft\mods\WandaPowerPickAxe\PowerPickaxe$1.class" to="mods\WandaPowerPickAxe" />
+		<file from="reobf\minecraft\mods\WandaPowerPickAxe\PowerPickaxe.class" to="mods\WandaPowerPickAxe" />
+		<file from="src\minecraft\mods\WandaPowerPickAxe\textures\items\PowerPickAxe00.png" to="mods\WandaPowerPickAxe\textures\items" />
+		<file from="src\minecraft\mods\WandaPowerPickAxe\textures\items\PowerPickAxe01.png" to="mods\WandaPowerPickAxe\textures\items" />
+		<file from="src\minecraft\mods\WandaPowerPickAxe\textures\items\PowerPickAxe02.png" to="mods\WandaPowerPickAxe\textures\items" />
+		<file from="src\minecraft\mods\WandaPowerPickAxe\textures\items\PowerPickAxe03.png" to="mods\WandaPowerPickAxe\textures\items" />
+		<file from="src\minecraft\mods\WandaPowerPickAxe\textures\items\PowerPickAxe04.png" to="mods\WandaPowerPickAxe\textures\items" />
 	</mod>
 	
-	<mod name="WandaCrowbar_Forge4.0.0" version="0.3.0">
+	<mod name="WandaCrowbar_Forge7.7.0" version="0.5.0">
 		<file from="mcmod_info\WandaCrowbar\mcmod.info" to=""/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\WandaModBase.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\MaterialTable.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\MaterialTable$1.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\crowbar\Crowbar.class" to="jp\wanda\minecraft\crowbar"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\crowbar\mod_WandaCrowbar.class" to="jp\wanda\minecraft\crowbar"/>
+		<file from="reobf\minecraft\mods\WandaCrowBar\Crowbar$1.class" to="mods\WandaCrowBar" />
+		<file from="reobf\minecraft\mods\WandaCrowBar\Crowbar.class" to="mods\WandaCrowBar" />
+		<file from="reobf\minecraft\mods\WandaCrowBar\mod_WandaCrowbar.class" to="mods\WandaCrowBar" />
+		<file from="src\minecraft\mods\WandaCrowBar\textures\items\CrowBar00.png" to="mods\WandaCrowBar\textures\items" />
+		<file from="src\minecraft\mods\WandaCrowBar\textures\items\CrowBar01.png" to="mods\WandaCrowBar\textures\items" />
+		<file from="src\minecraft\mods\WandaCrowBar\textures\items\CrowBar02.png" to="mods\WandaCrowBar\textures\items" />
 	</mod>
 	
-	<mod name="WandaHarvestSickle_Forge4.0.0" version="0.3.0">
+	<mod name="WandaHarvestSickle_Forge7.7.0" version="0.5.0">
 		<file from="mcmod_info\WandaHarvestSickle\mcmod.info" to=""/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\WandaModBase.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\MaterialTable.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\MaterialTable$1.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\harvestsickle\HarvestSickle.class" to="jp\wanda\minecraft\harvestsickle"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\harvestsickle\mod_WandaHarvestSickle.class" to="jp\wanda\minecraft\harvestsickle"/>
+		<file from="reobf\minecraft\mods\WandaHarvestSickle\HarvestSickle$1.class" to="mods\WandaHarvestSickle" />
+		<file from="reobf\minecraft\mods\WandaHarvestSickle\HarvestSickle.class" to="mods\WandaHarvestSickle" />
+		<file from="reobf\minecraft\mods\WandaHarvestSickle\mod_WandaHarvestSickle.class" to="mods\WandaHarvestSickle" />
+		<file from="src\minecraft\mods\WandaHarvestSickle\textures\items\HarvestSickle00.png" to="mods\WandaHarvestSickle\textures\items" />
+		<file from="src\minecraft\mods\WandaHarvestSickle\textures\items\HarvestSickle01.png" to="mods\WandaHarvestSickle\textures\items" />
+		<file from="src\minecraft\mods\WandaHarvestSickle\textures\items\HarvestSickle02.png" to="mods\WandaHarvestSickle\textures\items" />
 	</mod>
 	
-	<mod name="WandaSlingshot_Forge4.0.0" version="0.3.0">
+	<mod name="WandaSlingshot_Forge7.7.0" version="0.5.0">
 		<file from="mcmod_info\WandaSlingshot\mcmod.info" to=""/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\WandaModBase.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\MaterialTable.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\MaterialTable$1.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\slingshot\ItemSlingshot.class" to="jp\wanda\minecraft\slingshot"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\slingshot\mod_WandaSlingshot.class" to="jp\wanda\minecraft\slingshot"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\slingshot\EntitySlingshotBullet$Type.class" to="jp\wanda\minecraft\slingshot"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\slingshot\EntitySlingshotBullet.class" to="jp\wanda\minecraft\slingshot"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\slingshot\RenderSlingshotBullet.class" to="jp\wanda\minecraft\slingshot"/>
+		<file from="reobf\minecraft\mods\WandaSlingShot\EntitySlingshotBullet$Type.class" to="mods\WandaSlingShot" />
+		<file from="reobf\minecraft\mods\WandaSlingShot\EntitySlingshotBullet.class" to="mods\WandaSlingShot" />
+		<file from="reobf\minecraft\mods\WandaSlingShot\ItemSlingshot.class" to="mods\WandaSlingShot" />
+		<file from="reobf\minecraft\mods\WandaSlingShot\mod_WandaSlingshot.class" to="mods\WandaSlingShot" />
+		<file from="reobf\minecraft\mods\WandaSlingShot\RenderSlingshotBullet.class" to="mods\WandaSlingShot" />
+		<file from="src\minecraft\mods\WandaSlingShot\textures\items\SlingShot00.png" to="mods\WandaSlingShot\textures\items" />
+		<file from="src\minecraft\mods\WandaSlingShot\textures\items\SlingShot01.png" to="mods\WandaSlingShot\textures\items" />
+		<file from="src\minecraft\mods\WandaSlingShot\textures\items\SlingShot02.png" to="mods\WandaSlingShot\textures\items" />
+		<file from="src\minecraft\mods\WandaSlingShot\textures\items\SlingShot03.png" to="mods\WandaSlingShot\textures\items" />
 	</mod>
 	
-	<mod name="WandaArrowTargetBlock_Forge4.0.0" version="0.3.0">
+	<mod name="WandaArrowTargetBlock_Forge7.7.0" version="0.5.0">
 		<file from="mcmod_info\WandaArrowTargetBlock\mcmod.info" to=""/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\WandaModBase.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\arrowtargetblock\ArrowTargetBlock.class" to="jp\wanda\minecraft\arrowtargetblock"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\arrowtargetblock\mod_WandaArrowTargetBlock.class" to="jp\wanda\minecraft\arrowtargetblock"/>
+		<file from="reobf\minecraft\mods\WandaArrowTarget\ArrowTargetBlock.class" to="mods\WandaArrowTarget" />
+		<file from="reobf\minecraft\mods\WandaArrowTarget\mod_WandaArrowTargetBlock.class" to="mods\WandaArrowTarget" />
+		<file from="src\minecraft\mods\WandaArrowTarget\textures\blocks\ArrowTarget00.png" to="mods\WandaArrowTarget\textures\blocks" />
+		<file from="src\minecraft\mods\WandaArrowTarget\textures\blocks\ArrowTarget01.png" to="mods\WandaArrowTarget\textures\blocks" />
 	</mod>
 	
-	<mod name="WandaBouyomi_Forge4.1.1" version="0.0.1">
+	<mod name="WandaBouyomi_Forge4.1.1" version="0.5.0">
 		<file from="mcmod_info\WandaBouyomi\mcmod.info" to=""/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\WandaModBase.class" to="jp\wanda\minecraft"/>
-		<file from="reobf\minecraft\jp\wanda\minecraft\bouyomi\mod_WandaBouyomi.class" to="jp\wanda\minecraft\bouyomi"/>
-		<file from="reobf\minecraft\jp\snowink\bouyomichan\BouyomiChan4J.class" to="jp\snowink\bouyomichan"/>
+		<file from="reobf\minecraft\jp\snowink\bouyomichan\BouyomiChan4J.class" to="jp\snowink\bouyomichan" />
+		<file from="reobf\minecraft\mods\WandaBouyomi\mod_WandaBouyomi$EventHook.class" to="mods\WandaBouyomi" />
+		<file from="reobf\minecraft\mods\WandaBouyomi\mod_WandaBouyomi.class" to="mods\WandaBouyomi" />
 	</mod>
+	
 </root>
