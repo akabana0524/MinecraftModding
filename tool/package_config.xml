@@ -57,7 +57,7 @@
 		<file from="src\minecraft\mods\WandaPowerPickAxe\textures\items\PowerPickAxe04.png" to="mods\WandaPowerPickAxe\textures\items" />
 	</mod>
 	
-	<mod name="WandaCrowbar_Forge7.7.0" version="0.5.0">
+	<mod name="WandaCrowbar_Forge7.7.0" version="0.5.1">
 		<file from="mcmod_info\WandaCrowbar\mcmod.info" to=""/>
 		<file from="reobf\minecraft\mods\WandaCrowBar\Crowbar$1.class" to="mods\WandaCrowBar" />
 		<file from="reobf\minecraft\mods\WandaCrowBar\Crowbar.class" to="mods\WandaCrowBar" />
@@ -90,7 +90,7 @@
 		<file from="src\minecraft\mods\WandaSlingShot\textures\items\SlingShot03.png" to="mods\WandaSlingShot\textures\items" />
 	</mod>
 	
-	<mod name="WandaArrowTargetBlock_Forge7.7.0" version="0.5.0">
+	<mod name="WandaArrowTargetBlock_Forge7.7.0" version="0.5.1">
 		<file from="mcmod_info\WandaArrowTargetBlock\mcmod.info" to=""/>
 		<file from="reobf\minecraft\mods\WandaArrowTarget\ArrowTargetBlock.class" to="mods\WandaArrowTarget" />
 		<file from="reobf\minecraft\mods\WandaArrowTarget\mod_WandaArrowTargetBlock.class" to="mods\WandaArrowTarget" />

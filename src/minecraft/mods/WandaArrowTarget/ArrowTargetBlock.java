@@ -12,7 +12,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArrowTargetBlock extends Block {
 
-	private Icon iconTop;
+	// private Icon iconTop;
 	private Icon defaultIcon;
 
 	public ArrowTargetBlock(int blockID, Material blockMaterial) {
@@ -21,11 +21,11 @@ public class ArrowTargetBlock extends Block {
 
 	@Override
 	public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
-		if (par1 == 1) {
-			return iconTop;
-		} else {
-			return super.getBlockTextureFromSideAndMetadata(par1, par2);
-		}
+		// if (par1 == 1) {
+		// return iconTop;
+		// } else {
+		return super.getBlockTextureFromSideAndMetadata(par1, par2);
+		// }
 	}
 
 	@Override
@@ -45,7 +45,6 @@ public class ArrowTargetBlock extends Block {
 	}
 
 	@SideOnly(Side.CLIENT)
-
 	/**
 	 * When this method is called, your block should register all the icons it needs with the given IconRegister. This is
 	 * the only chance you get to register icons.
@@ -53,8 +52,8 @@ public class ArrowTargetBlock extends Block {
 	public void registerIcons(IconRegister par1IconRegister) {
 		this.blockIcon = par1IconRegister
 				.registerIcon("WandaArrowTarget:ArrowTarget00");
-		this.iconTop = par1IconRegister
-				.registerIcon("WandaArrowTarget:ArrowTarget01");
+		// this.iconTop = par1IconRegister
+		// .registerIcon("WandaArrowTarget:ArrowTarget01");
 	}
 
 }

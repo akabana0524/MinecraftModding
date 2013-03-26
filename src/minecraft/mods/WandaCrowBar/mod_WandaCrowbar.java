@@ -15,7 +15,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "WandaCrowbar", name = "Wanda Crowbar", version = "0.3.0", dependencies = "required-after:WandaCore")
+@Mod(modid = "WandaCrowbar", name = "Wanda Crowbar", version = "0.5.1", dependencies = "required-after:WandaCore")
 public class mod_WandaCrowbar extends WandaModBase {
 
 	private static final Block[] blocksEffectiveAgainst;
@@ -63,7 +63,7 @@ public class mod_WandaCrowbar extends WandaModBase {
 				Block.signWall,// 看板(壁付き)
 				Block.stoneBrick,// 石レンガ
 				Block.furnaceBurning,// かまど(ON)
-				Block.furnaceBurning,// かまど(OFF)
+				Block.furnaceIdle,// かまど(OFF)
 				Block.tnt,// TNT
 				Block.torchRedstoneActive,// レッドストーントーチ(ON)
 				Block.torchRedstoneIdle,// レッドストーントーチ(OFF)
@@ -92,7 +92,24 @@ public class mod_WandaCrowbar extends WandaModBase {
 				Block.blockSnow,// 雪ブロック
 				Block.music, // ノートブロック
 				Block.woodenButton, // 木製ブロック
-				Block.anvil, Block.beacon, Block.blockClay, };
+				Block.anvil,// 鉄床
+				Block.beacon,// ビーコン
+				Block.blockClay, // 粘土ブロック
+				Block.sandStone, // 砂岩
+				Block.enderChest, // エンダーチェスト
+				Block.chestTrapped, // トラップチェスト
+				Block.hopperBlock,//ホッパー
+				Block.pressurePlateGold,//金製感圧板
+				Block.pressurePlateIron,//鉄製感圧板
+				Block.blockNetherQuartz, // ネザー水晶ブロック
+				Block.stairCompactNetherQuartz, //ネザー水晶階段
+				Block.railActivator, // アクティベータレール
+				Block.cobblestoneWall, // 丸石壁
+				Block.blockRedstone, // 赤石ブロック
+				Block.daylightSensor, // 日光センサー
+				Block.redstoneComparatorIdle, // コンパレータ(ON)
+				Block.redstoneComparatorActive, // コンパレータ(OFF)
+		};
 	}
 
 	@Init
