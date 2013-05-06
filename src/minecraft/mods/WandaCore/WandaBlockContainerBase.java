@@ -44,6 +44,14 @@ abstract public class WandaBlockContainerBase extends BlockContainer {
 	}
 
 	@Override
+	public boolean hasTileEntity(int metadata) {
+		if (tileEntityClass != null) {
+			return true;
+		}
+		return super.hasTileEntity(metadata);
+	}
+
+	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
 		super.onBlockAdded(world, x, y, z);
 		if (enableFacing) {
@@ -70,7 +78,7 @@ abstract public class WandaBlockContainerBase extends BlockContainer {
 		if (enableFacing) {
 			side = getFacing(par1iBlockAccess, x, y, z).getSide(dir);
 		}
-		return getTexture(side, x);
+		return getTexture(side, sideIndex);
 	}
 
 	@Override

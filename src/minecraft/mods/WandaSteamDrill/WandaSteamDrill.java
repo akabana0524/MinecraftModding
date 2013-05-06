@@ -10,6 +10,7 @@ import mods.WandaCore.packet.WandaPacketHandlerRegistry;
 import mods.WandaSteamCore.WandaSteamFuel;
 import mods.WandaSteamCore.WandaSteamFuelMachine;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
@@ -56,14 +57,6 @@ public class WandaSteamDrill extends ItemPickaxe implements
 	@Override
 	public int getDamageVsEntity(Entity par1Entity) {
 		return super.getDamageVsEntity(par1Entity) * 2;
-	}
-
-	public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {
-		if (isEnoughFuel(par1ItemStack)) {
-			return super.getStrVsBlock(par1ItemStack, par2Block);
-		} else {
-			return 0;
-		}
 	}
 
 	@Override
@@ -115,21 +108,21 @@ public class WandaSteamDrill extends ItemPickaxe implements
 		return WandaSteamFuel.getFuel(par1ItemStack) > 0;
 	}
 
-	@Override
-	public void onUpdate(ItemStack itemStack, World world, Entity entity,
-			int par4, boolean par5) {
-		if (!world.isRemote) {
-			EntityPlayer player = (EntityPlayer) entity;
-			if (!player.capabilities.isCreativeMode) {
-				WandaSteamFuel.idlingFuelMachine(itemStack);
-			}
-			if (player.isSwingInProgress) {
-				WandaSteamFuel.subFuelMachine(itemStack, 2);
-			}
-		} else {
-		}
-		super.onUpdate(itemStack, world, entity, par4, par5);
-	}
+	// @Override
+	// public void onUpdate(ItemStack itemStack, World world, Entity entity,
+	// int par4, boolean par5) {
+	// if (!world.isRemote) {
+	// EntityPlayer player = (EntityPlayer) entity;
+	// if (!player.capabilities.isCreativeMode) {
+	// WandaSteamFuel.idlingFuelMachine(itemStack);
+	// }
+	// if (player.isSwingInProgress) {
+	// WandaSteamFuel.subFuelMachine(itemStack, 2);
+	// }
+	// } else {
+	// }
+	// super.onUpdate(itemStack, world, entity, par4, par5);
+	// }
 
 	@Override
 	public int getMaxFuel() {

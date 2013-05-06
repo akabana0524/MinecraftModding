@@ -13,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 
 abstract public class WandaTileEntityBase extends TileEntity {
 
+	public static final String SUB_CHANNEL = "WandaTileEntity";
 	protected int tileEntityVersion;
 	protected List<WandaTileEntityData> tileEntityDataList;
 	protected WandaFacingData facing;
@@ -57,7 +58,9 @@ abstract public class WandaTileEntityBase extends TileEntity {
 
 	abstract public int getTileEntityVersion();
 
-	abstract public String getChannel();
+	public String getSubChannel() {
+		return SUB_CHANNEL;
+	}
 
 	@Override
 	public Packet getDescriptionPacket() {
@@ -90,8 +93,8 @@ abstract public class WandaTileEntityBase extends TileEntity {
 			e.printStackTrace();
 		}
 
-		return WandaPacketHandlerRegistry.createWandaPacket("WandaTileEntity",
-				bos.toByteArray(), true);
+		return WandaPacketHandlerRegistry.createWandaPacket(
+				entity.getSubChannel(), bos.toByteArray(), true);
 	}
 
 	public void initialize(WandaContainerBase generatorContainer) {

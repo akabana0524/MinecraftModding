@@ -105,4 +105,52 @@
 		<file from="reobf\minecraft\mods\WandaBouyomi\mod_WandaBouyomi.class" to="mods\WandaBouyomi" />
 	</mod>
 	
+	<mod name="WandaSteamCore_Forge7.7.0" version="0.5.0">
+		<file from="mcmod_info\WandaSteamCore\mcmod.info" to=""/>
+		<file from="reobf\minecraft\mods\WandaSteamCore\mod_WandaSteamCore$1.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\mod_WandaSteamCore$2.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\mod_WandaSteamCore.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\WandaSteamFuel$1.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\WandaSteamFuel$FuelType.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\WandaSteamFuel.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\WandaSteamFuelGenerator$GeneratorContainer.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\WandaSteamFuelGenerator$GeneratorGUI.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\WandaSteamFuelGenerator$GeneratorTileEntity.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\WandaSteamFuelGenerator$GuiFuelGenerator.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\WandaSteamFuelGenerator.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\WandaSteamFuelMachine.class" to="mods\WandaSteamCore" />
+		<file from="reobf\minecraft\mods\WandaSteamCore\WandaSteamSmallEngine.class" to="mods\WandaSteamCore" />
+		<file from="src\minecraft\mods\WandaSteamCore\GuiWandaSteamFuelGenerator.png" to="mods\WandaSteamCore" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\CoalRefined00.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\CoalRefined01.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\CoalRefined03.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\CoalRefined02.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\CoalRefined04.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\CoalRefined05.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\CoalRefined11.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\CoalRefined12.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\CoalRefined13.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\SteamFuelGenerator00.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\SteamFuelGenerator01.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\SteamFuelGenerator02.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\SteamFuelGenerator03.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\SteamFuelGenerator04.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\blocks\SteamFuelGenerator05.png" to="mods\WandaSteamCore\textures\blocks" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\items\SteamEngineSmall.png" to="mods\WandaSteamCore\textures\items" />
+		<file from="src\minecraft\mods\WandaSteamCore\textures\items\SteamFuel.png" to="mods\WandaSteamCore\textures\items" />
+	</mod>
+	
+	<mod name="WandaSteamDrill_Forge7.7.0" version="0.5.0">
+		<file from="mcmod_info\WandaSteamDrill\mcmod.info" to=""/>
+		<file from="reobf\minecraft\mods\WandaSteamDrill\mod_WandaSteamDrill$NetworkHandler.class" to="mods\WandaSteamDrill" />
+		<file from="reobf\minecraft\mods\WandaSteamDrill\mod_WandaSteamDrill.class" to="mods\WandaSteamDrill" />
+		<file from="reobf\minecraft\mods\WandaSteamDrill\WandaSteamDrill$1.class" to="mods\WandaSteamDrill" />
+		<file from="reobf\minecraft\mods\WandaSteamDrill\WandaSteamDrill.class" to="mods\WandaSteamDrill" />
+		<file from="reobf\minecraft\mods\WandaSteamDrill\WandaSteamMachineRenderer$1.class" to="mods\WandaSteamDrill" />
+		<file from="reobf\minecraft\mods\WandaSteamDrill\WandaSteamMachineRenderer.class" to="mods\WandaSteamDrill" />
+		<file from="src\minecraft\mods\WandaSteamDrill\textures\items\SteamDrill00.png" to="mods\WandaSteamDrill\textures\items" />
+		<file from="src\minecraft\mods\WandaSteamDrill\textures\items\SteamDrill01_0.png" to="mods\WandaSteamDrill\textures\items" />
+		<file from="src\minecraft\mods\WandaSteamDrill\textures\items\SteamDrill01_1.png" to="mods\WandaSteamDrill\textures\items" />
+	</mod>
+	
 </root>

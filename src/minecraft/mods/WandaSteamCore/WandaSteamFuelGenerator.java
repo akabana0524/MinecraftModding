@@ -25,7 +25,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
-	public static final String GUI_TEXTURE = "/WandaSteamCore/GuiWandaSteamFuelGenerator.png";
+	public static final String GUI_TEXTURE = "/mods/WandaSteamCore/GuiWandaSteamFuelGenerator.png";
 
 	public static GuiFuelGenerator GUI = new GuiFuelGenerator();
 
@@ -63,11 +63,11 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 		@Override
 		protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 			fontRenderer.drawString(
-					"Energy:" + generatorTileEntity.ep.getEnergy(), par1 + 8,
-					par2 + 6, 0x404040);
+					"Energy:" + generatorTileEntity.ep.getEnergy(), 8, 6,
+					0x404040);
 			fontRenderer.drawString(
-					"ProcCnt:" + generatorTileEntity.ep.getProcCount(),
-					par1 + 8, par2 + 20, 0x404040);
+					"ProcCnt:" + generatorTileEntity.ep.getProcCount(), 8, 20,
+					0x404040);
 		}
 
 		@Override
@@ -168,8 +168,7 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 				material.removeItem(new ItemStack(Item.gunpowder.itemID, 1, 0));
 				material.removeItem(new ItemStack(Item.coal.itemID, 1, 0));
 				material.removeItem(new ItemStack(Item.slimeBall.itemID, 1, 0));
-				output.addItem(new ItemStack(WandaSteamFuel.globalItemID,
-						1, 0));
+				output.addItem(new ItemStack(WandaSteamFuel.globalItemID, 1, 0));
 
 			}
 		}
@@ -200,11 +199,6 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 				}
 			}
 			return null;
-		}
-
-		@Override
-		public String getChannel() {
-			return "WandaTileEntity";
 		}
 
 	}
@@ -297,7 +291,6 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 	}
 
 	@SideOnly(Side.CLIENT)
-
 	/**
 	 * When this method is called, your block should register all the icons it needs with the given IconRegister. This is
 	 * the only chance you get to register icons.
@@ -306,7 +299,7 @@ public class WandaSteamFuelGenerator extends WandaBlockContainerBase {
 		icons = new Icon[6];
 		for (int i = 0; i < icons.length; i++) {
 			icons[i] = par1IconRegister
-					.registerIcon("WandaSteamCore:SteamFuelGenerator0" + i);
+					.registerIcon("WandaSteamCore:CoalRefined0" + i);
 		}
 		this.blockIcon = icons[0];
 	}

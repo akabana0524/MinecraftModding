@@ -1,0 +1,22 @@
+[
+{
+  "modid": "WandaSteamDrill",
+  "name": "Wanda Steam Drill",
+  "description": "This drill is useful make tunnel.",
+  "version": "@VERSION@",
+  "mcversion": "1.5.1",
+  "url": "http://www.minecraftforum.net/topic/1422370-",
+  "updateUrl": "",
+  "authors": [
+    "akabana0524"
+  ],
+  "credits": "By akabana0524",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  	"required-after:WandaSteamCore"
+  ]
+}
+]

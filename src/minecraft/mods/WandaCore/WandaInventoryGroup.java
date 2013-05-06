@@ -53,9 +53,22 @@ public class WandaInventoryGroup implements IInventory, WandaTileEntityData {
 	@Override
 	public ItemStack decrStackSize(int var1, int var2) {
 		if (stackList[var1] != null) {
-			ItemStack ret = stackList[var1];
-			stackList[var1] = null;
-			return ret;
+			if (stackList[var1].stackSize <= var2) {
+				ItemStack ret = stackList[var1];
+				stackList[var1] = null;
+				onInventoryChanged();
+				return ret;
+			} else {
+				ItemStack itemstack = stackList[var1].splitStack(var2);
+
+				if (stackList[var1].stackSize == 0) {
+					stackList[var1] = null;
+				}
+
+				onInventoryChanged();
+				return itemstack;
+
+			}
 		} else {
 			return null;
 		}
@@ -72,9 +85,15 @@ public class WandaInventoryGroup implements IInventory, WandaTileEntityData {
 		}
 	}
 
-	@Override
-	public void setInventorySlotContents(int var1, ItemStack var2) {
-		this.stackList[var1] = var2;
+	public void setInventorySlotContents(int par1, ItemStack par2ItemStack) {
+		stackList[par1] = par2ItemStack;
+
+		if (par2ItemStack != null
+				&& par2ItemStack.stackSize > this.getInventoryStackLimit()) {
+			par2ItemStack.stackSize = this.getInventoryStackLimit();
+		}
+
+		this.onInventoryChanged();
 	}
 
 	@Override
@@ -252,7 +271,6 @@ public class WandaInventoryGroup implements IInventory, WandaTileEntityData {
 	}
 
 	@Override
-
 	/**
 	 * If this returns false, the inventory name will be used as an unlocalized name, and translated into the player's
 	 * language. Otherwise it will be used directly.
@@ -262,7 +280,6 @@ public class WandaInventoryGroup implements IInventory, WandaTileEntityData {
 	}
 
 	@Override
-
 	/**
 	 * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
 	 */

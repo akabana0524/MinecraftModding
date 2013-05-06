@@ -158,6 +158,7 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 				ItemStack item = mc.thePlayer.getCurrentEquippedItem();
 				if (item != null
 						&& instance.axeItemIDList.contains(item.itemID)) {
+					FMLLog.info("WandaPowerAxe:sendPacket");
 					FMLClientHandler.instance().sendPacket(
 							WandaPacketHandlerRegistry.createWandaPacket(
 									getModID(), null, false));

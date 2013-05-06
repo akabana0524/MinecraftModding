@@ -15,7 +15,7 @@ public class WandaSteamFuel extends Item implements IFuelHandler {
 
 	public static int globalItemID;
 	public static int fuelGainEnergy;
-	private static final FuelType FUEL_TYPE = FuelType.STACK_SIZE;
+	private static final FuelType FUEL_TYPE = FuelType.DAMAGE;
 
 	public static void addFuel(ItemStack itemStack) {
 		switch (FUEL_TYPE) {
