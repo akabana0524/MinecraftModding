@@ -30,7 +30,7 @@ public class mod_WandaSlingshot extends WandaModBase {
 
 		Property propertyItemID = config.getItem("Slingshot", 5040);
 		Property propertyEntityID = config
-				.get("BulletEntityID", "general", 220);
+				.get("general", "BulletEntityID", 220);
 		config.save();
 
 		EntityRegistry.registerModEntity(EntitySlingshotBullet.class,

@@ -79,19 +79,19 @@ public class mod_WandaPowerPickaxe extends WandaModBase implements
 			WandaKeyRegistry.registerWandaKeyListener(WandaKey.TOGGLE, this);
 		}
 		Property propertyItemID = config.getItem("PowerPickaxe", 5030);
-		Property propertyTarget = config.get("TargetBlockID", "general", "");
-		Property propertyEnableOre = config.get("EnableOre", "general", true);
-		Property propertyEnableRedstone = config.get("EnableRedstone",
-				"general", true);
-		Property propertyEnableGrowstone = config.get("EnableGrowstone",
-				"general", true);
-		Property propertyMaxRange = config.get("MaxRange", "general", "10.0");
-		Property propertyEnableEffect = config.get("EnableEffect", "general",
+		Property propertyTarget = config.get("general", "TargetBlockID", "");
+		Property propertyEnableOre = config.get("general", "EnableOre", true);
+		Property propertyEnableRedstone = config.get("general",
+				"EnableRedstone", true);
+		Property propertyEnableGrowstone = config.get("general",
+				"EnableGrowstone", true);
+		Property propertyMaxRange = config.get("general", "MaxRange", "10.0");
+		Property propertyEnableEffect = config.get("general", "EnableEffect",
 				true);
 		Property propertyDamageRatio = config
-				.get("DamageRatio", "general", "1");
-		Property propertyExhaustionRatio = config.get("ExhaustionRatio",
-				"general", "0.05");
+				.get("general", "DamageRatio", "1");
+		Property propertyExhaustionRatio = config.get("general",
+				"ExhaustionRatio", "0.05");
 
 		int itemID = propertyItemID.getInt();
 		int iconX = 0;
@@ -172,7 +172,7 @@ public class mod_WandaPowerPickaxe extends WandaModBase implements
 	}
 
 	private Property getEnable(String username) {
-		Property propertyEnable = config.get(username, "Enable", true);
+		Property propertyEnable = config.get("Enable", username, true);
 		return propertyEnable;
 	}
 

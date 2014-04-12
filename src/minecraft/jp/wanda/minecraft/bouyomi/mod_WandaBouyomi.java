@@ -133,18 +133,12 @@ public class mod_WandaBouyomi extends WandaModBase implements IChatListener,
 		super.init(event);
 		FMLLog.info("Init WandaBouyomi");
 		// MinecraftForge.EVENT_BUS.register(new EventHook());
-		Property propertyHost = config.get("HostIP", "general",
-				"localhost");
-		Property propertyPort = config.get("Port",
-				"general", 50001);
-		Property propertyVolume = config.get("Volume",
-				"general", -1);
-		Property propertySpeed = config.get("Speed",
-				"general", -1);
-		Property propertyTone = config.get("Tone",
-				"general", -1);
-		Property propertyVoice = config.get("Voice",
-				"general", 0);
+		Property propertyHost = config.get("general", "HostIP", "localhost");
+		Property propertyPort = config.get("general", "Port", 50001);
+		Property propertyVolume = config.get("general", "Volume", -1);
+		Property propertySpeed = config.get("general", "Speed", -1);
+		Property propertyTone = config.get("general", "Tone", -1);
+		Property propertyVoice = config.get("general", "Voice", 0);
 		config.save();
 
 		sayClient = Pattern.compile("^\\<(\\w*)\\> (.*)");

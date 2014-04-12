@@ -40,8 +40,7 @@ public class mod_WandaAI extends WandaModBase {
 		if (event.getSide() == Side.CLIENT) {
 			initClient();
 		}
-		int blockAIWorkBench = config.get("AI WorkBench",
-				"block", 180).getInt();
+		int blockAIWorkBench = config.getBlock("block", 180).getInt();
 		config.save();
 		WandaAIWorkbench workBench = new WandaAIWorkbench(this,
 				GUI_WandaAIWorkbench, blockAIWorkBench, Material.rock);

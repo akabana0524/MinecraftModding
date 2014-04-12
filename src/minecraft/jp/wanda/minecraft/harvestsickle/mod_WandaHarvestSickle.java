@@ -27,7 +27,7 @@ public class mod_WandaHarvestSickle extends WandaModBase {
 		FMLLog.log(Level.INFO, "Init " + getModID());
 		list = new HashMap<EnumToolMaterial, HarvestSickle>();
 		Property propertyItemID = config.getItem("HarvestSickle", 5010);
-		Property propertyEnableEffect = config.get("EnableEffect", "general",
+		Property propertyEnableEffect = config.get("general", "EnableEffect",
 				true);
 		config.save();
 		int itemID = propertyItemID.getInt() - 256;

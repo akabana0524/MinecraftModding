@@ -103,7 +103,7 @@ public class mod_WandaSteamCore extends WandaModBase implements
 		int smallEngineID = config.getItem("SteamEngineSmall", 6001).getInt();
 		int fuelGeneratorID = config.getBlock("SteamFuelGenerator", 160)
 				.getInt();
-		int fuelEnergy = config.get("SteamFuelEnergy", "general", 20 * 600)
+		int fuelEnergy = config.get("general", "SteamFuelEnergy", 20 * 600)
 				.getInt();
 		config.save();
 

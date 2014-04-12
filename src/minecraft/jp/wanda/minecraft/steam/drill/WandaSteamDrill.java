@@ -201,7 +201,6 @@ public class WandaSteamDrill extends ItemPickaxe implements
 				temp = temp.addVector(rightArm.xCoord, rightArm.yCoord,
 						rightArm.zCoord);
 			}
-			FMLLog.info("r:%s", rightArm.toString());
 			world.spawnParticle("note", temp.xCoord, temp.yCoord, temp.zCoord,
 					0, 0, 0);
 

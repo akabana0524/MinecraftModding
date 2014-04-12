@@ -48,8 +48,8 @@ public class Crowbar extends ItemTool {
 			}
 		}
 
-		return super.onItemUse(itemStack, entityPlayer, world, x, y, z,
-				side, clickPosX, clickPosY, clickPosZ);
+		return super.onItemUse(itemStack, entityPlayer, world, x, y, z, side,
+				clickPosX, clickPosY, clickPosZ);
 	}
 
 	@Override

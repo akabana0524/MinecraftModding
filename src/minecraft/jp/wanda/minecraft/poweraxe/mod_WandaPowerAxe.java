@@ -82,17 +82,17 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 			WandaKeyRegistry.registerWandaKeyListener(WandaKey.TOGGLE, this);
 		}
 		Property propertyItemID = config.getItem("PowerAxe", 5000);
-		Property propertyEnableEffect = config.get("EnableEffect", "general",
+		Property propertyEnableEffect = config.get("general", "EnableEffect",
 				true);
-		Property propertyTarget = config.get("TargetBlockID", "general", "");
-		Property propertyHorizontalRange = config.get("HorizontalRange",
-				"general", 10);
-		Property propertyVerticalRange = config.get("VerticalRange", "general",
+		Property propertyTarget = config.get("general", "TargetBlockID", "");
+		Property propertyHorizontalRange = config.get("general",
+				"HorizontalRange", 10);
+		Property propertyVerticalRange = config.get("general", "VerticalRange",
 				50);
-		Property propertyDamageRatio = config.get("DamageRatio", "general",
+		Property propertyDamageRatio = config.get("general", "DamageRatio",
 				"0.2");
-		Property propertyExhaustionRatio = config.get("ExhaustionRatio",
-				"general", "0.03125");
+		Property propertyExhaustionRatio = config.get("general",
+				"ExhaustionRatio", "0.03125");
 
 		config.save();
 		damageRatio = Double.parseDouble(propertyDamageRatio.value);
@@ -171,7 +171,7 @@ public class mod_WandaPowerAxe extends WandaModBase implements WandaKeyListener 
 	}
 
 	private Property getEnable(String username) {
-		Property propertyEnable = config.get(username, "Enable", true);
+		Property propertyEnable = config.get("Enable", username, true);
 		return propertyEnable;
 	}
 

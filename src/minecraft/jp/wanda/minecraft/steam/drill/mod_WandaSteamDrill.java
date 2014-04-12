@@ -114,14 +114,6 @@ public class mod_WandaSteamDrill extends WandaModBase implements
 		}
 	}
 
-	public static class EventHook {
-		@ForgeSubscribe
-		public void recieveEvent(PlayerInteractEvent event) {
-			FMLLog.info("PlayerInteractEvent");
-		}
-
-	}
-
 	private static void breakBlock(World world, EntityPlayer player, int x,
 			int y, int z, int orientation) {
 		int blockID = world.getBlockId(x, y, z);
@@ -149,11 +141,10 @@ public class mod_WandaSteamDrill extends WandaModBase implements
 	public void init(FMLInitializationEvent event) {
 		super.init(event);
 		FMLLog.info("Init " + getModID());
-		MinecraftForge.EVENT_BUS.register(new EventHook());
 		WandaPacketHandlerRegistry.registerPacketChannel(getModID(),
 				new NetworkHandler());
 		int itemID = config.getItem("SteamDrill", 6100).getInt();
-		int maxFuelValue = config.get("SteamDrillMaxFuel", "general", 20 * 600)
+		int maxFuelValue = config.get("general", "SteamDrillMaxFuel", 20 * 600)
 				.getInt();
 		// maxFuelValue = 20;
 		config.save();

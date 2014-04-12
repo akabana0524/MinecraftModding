@@ -24,7 +24,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.Player;
 
-@Mod(modid = "WandaResource", name = "Wanda Resource", version = "0.5.0", dependencies = "required-after:WandaCore")
+@Mod(modid = "WandaResource", name = "Wanda Resource", version = "0.5.1", dependencies = "required-after:WandaCore")
 @NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = { "WandaGeneral" }, packetHandler = WandaPacketHandlerRegistry.class)
 public class WandaResource {
 	public static final String RES_FOLDER = "/jp/wanda/minecraft/res";

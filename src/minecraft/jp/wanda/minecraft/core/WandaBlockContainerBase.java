@@ -33,13 +33,15 @@ abstract public class WandaBlockContainerBase extends BlockContainer {
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
 		tileEntity = null;
-		try {
-			tileEntity = tileEntityClass.newInstance();
-			enableFacing = tileEntity.getFacing() != null;
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+		if (tileEntityClass != null) {
+			try {
+				tileEntity = tileEntityClass.newInstance();
+				enableFacing = tileEntity.getFacing() != null;
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
 		}
 		return tileEntity;
 	}

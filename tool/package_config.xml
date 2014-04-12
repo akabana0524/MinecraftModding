@@ -28,7 +28,7 @@
 		<file from="reobf\minecraft\jp\wanda\minecraft\core\tileentity\WandaFacing6Face.class" to="jp\wanda\minecraft\core\tileentity"/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\core\tileentity\WandaFacingData.class" to="jp\wanda\minecraft\core\tileentity"/>
 	</mod>
-	<mod name="WandaResource_Forge6.0.1" version="0.5.0">
+	<mod name="WandaResource_Forge6.0.1" version="0.5.1">
 		<file from="mcmod_info\WandaResource\mcmod.info" to=""/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\res\Client.class" to="jp\wanda\minecraft\res"/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\res\Proxy.class" to="jp\wanda\minecraft\res"/>
@@ -84,6 +84,13 @@
 		<file from="reobf\minecraft\jp\wanda\minecraft\arrowtargetblock\mod_WandaArrowTargetBlock.class" to="jp\wanda\minecraft\arrowtargetblock"/>
 	</mod>
 	
+	<mod name="WandaThroughBox_Forge6.0.1" version="0.0.1">
+		<file from="mcmod_info\WandaThroughBox\mcmod.info" to=""/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\throughbox\mod_WandaThroughBox.class" to="jp\wanda\minecraft\throughbox"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\throughbox\ThroughBox.class" to="jp\wanda\minecraft\throughbox"/>
+		<file from="reobf\minecraft\jp\wanda\minecraft\throughbox\ThroughBoxTileEntity.class" to="jp\wanda\minecraft\throughbox"/>
+
+	</mod>
 	<mod name="WandaBouyomi_Forge6.0.1" version="0.5.0">
 		<file from="mcmod_info\WandaBouyomi\mcmod.info" to=""/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\bouyomi\mod_WandaBouyomi$EventHook.class" to="jp\wanda\minecraft\bouyomi"/>
@@ -109,11 +116,11 @@
 		<file from="src\minecraft\jp\wanda\minecraft\steam\WandaSteamCore.png" to="jp\wanda\minecraft\steam"/>
 	</mod>
 	<mod name="WandaSteamDrill_Forge6.0.1" version="0.0.1">
-		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\mod_WandaSteamDrill$EventHook.class" to="jp\wanda\minecraft\steam\drill"/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\mod_WandaSteamDrill$NetworkHandler.class" to="jp\wanda\minecraft\steam\drill"/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\mod_WandaSteamDrill.class" to="jp\wanda\minecraft\steam\drill"/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\WandaSteamDrill.class" to="jp\wanda\minecraft\steam\drill"/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\WandaSteamMachineRenderer$1.class" to="jp\wanda\minecraft\steam\drill"/>
 		<file from="reobf\minecraft\jp\wanda\minecraft\steam\drill\WandaSteamMachineRenderer.class" to="jp\wanda\minecraft\steam\drill"/>
 	</mod>
+	
 </root>
